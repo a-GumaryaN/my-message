@@ -12,7 +12,7 @@ const Message: FC<{}> = (props) => {
     <div
       className={
         "col-md-9 col-12 full-height position-relative " +
-        " border-3 border-secondary border-start " +
+        " border-3 border-primary border-start " +
         (!id && style.hide)
       }
     >

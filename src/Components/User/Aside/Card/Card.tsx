@@ -15,7 +15,7 @@ const Card: FC<{
       onClick={clickHandler}
       className={
         "col-12 col-md-11 p-4 border border-3 " +
-        " border-secondary text-light rounded-3 my-1 " +
+        " border-primary text-light rounded-3 my-1 " +
         (props.active && style.active) +
         " " +
         style.container

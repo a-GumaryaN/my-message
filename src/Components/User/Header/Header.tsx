@@ -15,7 +15,7 @@ const Header: FC<{}> = (props) => {
     <div
     onClick={clickHandler}
       className={
-        "col-12 d-flex flex-row align-items-center text-light border-3 border-secondary border-bottom font-3 " +
+        "col-12 d-flex flex-row align-items-center text-light border-3 border-primary border-bottom font-3 " +
         style.header
       }
     >

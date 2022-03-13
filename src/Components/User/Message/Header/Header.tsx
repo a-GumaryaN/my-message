@@ -11,7 +11,7 @@ const Header: FC<{}> = (props) => {
   return (
     <div
       style={{ height: "10%" }}
-      className="col-12 text-light d-flex flex-row align-items-center border-3 border-secondary border-bottom p-4"
+      className="col-12 text-light d-flex flex-row align-items-center border-3 border-primary border-bottom p-4"
     >
    
       <img className="rounded-circle" />

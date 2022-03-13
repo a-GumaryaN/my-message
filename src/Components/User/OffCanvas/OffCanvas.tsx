@@ -24,7 +24,7 @@ const OffCanvas: FC<{}> = (props) => {
   return (
     <div
       className={
-        "col-12 col-md-3 bg-dark position-fixed border-3 border-secondary border-end " +
+        "col-12 col-md-3 bg-dark position-fixed border-3 border-primary border-end " +
         style[display] +
         " " +
         style.container
