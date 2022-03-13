@@ -1,0 +1,13 @@
+.container{
+	height: 90%;
+}
+
+.profile-card{
+	height: 25%;
+}
+
+.profile-image{
+	width:auto;
+	height:80%; 
+	border-radius: 50%;
+}

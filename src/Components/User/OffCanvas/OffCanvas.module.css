@@ -1,0 +1,19 @@
+.container{
+  transition: all 1s ease-in-out;
+  z-index: 10;
+  height: 90%;
+}
+
+.hidden {
+  left: -100%;
+}
+
+.show{
+	left: 0 ;
+}
+
+@media only screen and (min-width: 768px) {
+  .hidden {
+    left: -25%;
+  }
+}
