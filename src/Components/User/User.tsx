@@ -1,5 +1,6 @@
 import Header from "./Header/Header";
 import Aside from "./Aside/Aside";
+import Message from "./Message/Message";
 import { useState, FC } from "react";
 
 const User: FC<{}> = (props) => {
@@ -8,6 +9,7 @@ const User: FC<{}> = (props) => {
       <Header />
       <div className="col-12 d-flex flex-row " style={{ height: "90%" }}>
         <Aside />
+        <Message />
       </div>
     </div>
   );
