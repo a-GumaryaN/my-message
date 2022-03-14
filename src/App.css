@@ -6,8 +6,16 @@ li {
   list-style: none;
 }
 
-.text-purple{
-  color:#b357b0;
+.text-purple {
+  color: #b357b0;
+}
+
+.bg-active-primary {
+  background-color: rgba(179, 87, 176, 0.3);
+}
+
+.bg-active-info {
+  background-color: rgba(50, 202, 240, 0.3);
 }
 
 .font-1 {
@@ -36,17 +44,32 @@ li {
 }
 
 /* Track */
-::-webkit-scrollbar-track {
+.scroll_light ::-webkit-scrollbar-track {
+  background: rgb(194, 194, 194);
+}
+
+.scroll_dark ::-webkit-scrollbar-track {
   background: #212529;
 }
 
 /* Handle */
-::-webkit-scrollbar-thumb {
+.scroll_primary ::-webkit-scrollbar-thumb {
   background: #b357b0;
   border-radius: 0.3rem;
 }
 
 /* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
+.scroll_primary ::-webkit-scrollbar-thumb:hover {
   background: #9e4c9b;
+}
+
+/* Handle */
+.scroll_info ::-webkit-scrollbar-thumb {
+  background: #32caf0;
+  border-radius: 0.3rem;
+}
+
+/* Handle on hover */
+.scroll_info ::-webkit-scrollbar-thumb:hover {
+  background: #2490ac;
 }

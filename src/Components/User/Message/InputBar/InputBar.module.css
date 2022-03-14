@@ -1,0 +1,13 @@
+.auto-show{
+	display:none;
+}
+
+@media only screen and (max-width:768px) {
+	.auto-hidden{
+		display: none !important;
+	}	
+	.auto-show{
+		display: inline-block;
+	}
+}
+

@@ -1,5 +1,6 @@
 import style from "./Card.module.css";
 import { FC } from "react";
+import { useSelector } from "react-redux";
 
 const Card: FC<{
   clickHandler: any;
@@ -10,13 +11,21 @@ const Card: FC<{
   const clickHandler = () => {
     props.clickHandler({ fullName: props.fullName, id: props.id });
   };
+
+  const { text, border,bg_active } = useSelector((state: any) => {
+    return state.theme;
+  });
+
   return (
     <div
       onClick={clickHandler}
       className={
+        border+
+        text+
         "col-12 col-md-11 p-4 border border-3 " +
-        " border-primary text-light rounded-3 my-1 " +
+        " rounded-3 my-1 " +
         (props.active && style.active) +
+        (props.active && bg_active) +
         " " +
         style.container
       }
