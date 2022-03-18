@@ -7,6 +7,7 @@ import User from "./Components/User/User";
 import "./App.css";
 import { useSelector } from "react-redux";
 import Overlay from "./Components/Overlay/Overlay";
+import AddProfileImage from "./Components/AddProfileImage/AddProfileImage";
 
 function App() {
   const { scroll, scroll_bg } = useSelector((state: any) => {
@@ -46,6 +47,15 @@ function App() {
             element={
               <Overlay pageName="forgot password">
                 <ForgotPassword />
+              </Overlay>
+            }
+          />
+          
+          <Route
+            path="/add-profile-image"
+            element={
+              <Overlay pageName="profile image">
+                <AddProfileImage />
               </Overlay>
             }
           />
