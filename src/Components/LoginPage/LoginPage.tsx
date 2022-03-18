@@ -6,8 +6,6 @@ import { useDispatch } from "react-redux";
 import React from "react";
 
 const LoginPage: React.FC<{}> = (props) => {
-
-
   const { state: email, dispatch: emailDispatch } = useInput();
   const { state: password, dispatch: passwordDispatch } = useInput();
   const checkEmail = (): boolean => {
@@ -42,8 +40,8 @@ const LoginPage: React.FC<{}> = (props) => {
 
     let isFormValid: boolean = true;
 
-    isFormValid &&= checkEmail();
-    isFormValid &&= checkPassword();
+    isFormValid = isFormValid && checkEmail();
+    isFormValid = isFormValid && checkPassword();
 
     if (!isFormValid) return;
 

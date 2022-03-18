@@ -63,10 +63,10 @@ const LoginPage: React.FC<{}> = (props) => {
     data.preventDefault();
     let isFormValid = true;
 
-    isFormValid &&= checkFullName();
-    isFormValid &&= checkEmail();
-    isFormValid &&= checkPassword();
-    isFormValid &&= checkPasswordAgain();
+    isFormValid = isFormValid && checkFullName();
+    isFormValid = isFormValid && checkEmail();
+    isFormValid = isFormValid && checkPassword();
+    isFormValid = isFormValid && checkPasswordAgain();
 
     if (!isFormValid) return;
   };
