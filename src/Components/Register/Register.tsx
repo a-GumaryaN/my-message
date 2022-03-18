@@ -59,7 +59,7 @@ const LoginPage: React.FC<{}> = (props) => {
     }
     return false;
   };
-  const submitHandler = (data:React.FormEvent) => {
+  const submitHandler = (data: React.FormEvent) => {
     data.preventDefault();
     let isFormValid = true;
 
@@ -72,72 +72,69 @@ const LoginPage: React.FC<{}> = (props) => {
   };
 
   return (
-    <div className="col-12 container-fluid full-height bg-dark text-light d-flex flex-column align-items-center">
-      <div className="col-md-3 display-1 text-center py-5">register</div>
-      <form onSubmit={submitHandler} className="col-md-3 d-flex flex-column">
-        <div>
-          <label className="display-6">full name</label>
-          <input
-            className="form-control"
-            type="text"
-            onChange={(e) => {
-              fullNameDispatch({ type: "setValue", value: e.target.value });
-            }}
-            value={fullName.value}
-            onBlur={checkFullName}
-          />
-          <p className="text-danger bg-gradient">{fullName.error}</p>
-        </div>
-        <div>
-          <label className="display-6">email</label>
-          <input
-            className="form-control"
-            type="email"
-            onChange={(e) => {
-              emailDispatch({ type: "setValue", value: e.target.value });
-            }}
-            value={email.value}
-            onBlur={checkEmail}
-          />
-          <p className="text-danger bg-gradient">{email.error}</p>
-        </div>
-        <div>
-          <label className="display-6">password</label>
-          <input
-            className="form-control"
-            type="password"
-            onChange={(e) => {
-              passwordDispatch({ type: "setValue", value: e.target.value });
-            }}
-            value={password.value}
-            onBlur={checkPassword}
-          />
-          <p className="text-danger bg-gradient">{password.error}</p>
-        </div>
-        <div>
-          <label className="display-6">password again</label>
-          <input
-            className="form-control"
-            type="password"
-            onChange={(e) => {
-              passwordAgainDispatch({
-                type: "setValue",
-                value: e.target.value,
-              });
-            }}
-            value={passwordAgain.value}
-            onBlur={checkPasswordAgain}
-          />
-          <p className="text-danger bg-gradient">{passwordAgain.error}</p>
-        </div>
-        <Link className="link link-primary" to="/login">
-          register later?!
-        </Link>
-        <button className="btn btn-outline-primary btn-lg align-self-end">
-          login
-        </button>
-      </form>
-    </div>
+    <form onSubmit={submitHandler} className="col-md-3 d-flex flex-column">
+      <div>
+        <label className="display-6">full name</label>
+        <input
+          className="form-control"
+          type="text"
+          onChange={(e) => {
+            fullNameDispatch({ type: "setValue", value: e.target.value });
+          }}
+          value={fullName.value}
+          onBlur={checkFullName}
+        />
+        <p className="text-danger bg-gradient">{fullName.error}</p>
+      </div>
+      <div>
+        <label className="display-6">email</label>
+        <input
+          className="form-control"
+          type="email"
+          onChange={(e) => {
+            emailDispatch({ type: "setValue", value: e.target.value });
+          }}
+          value={email.value}
+          onBlur={checkEmail}
+        />
+        <p className="text-danger bg-gradient">{email.error}</p>
+      </div>
+      <div>
+        <label className="display-6">password</label>
+        <input
+          className="form-control"
+          type="password"
+          onChange={(e) => {
+            passwordDispatch({ type: "setValue", value: e.target.value });
+          }}
+          value={password.value}
+          onBlur={checkPassword}
+        />
+        <p className="text-danger bg-gradient">{password.error}</p>
+      </div>
+      <div>
+        <label className="display-6">password again</label>
+        <input
+          className="form-control"
+          type="password"
+          onChange={(e) => {
+            passwordAgainDispatch({
+              type: "setValue",
+              value: e.target.value,
+            });
+          }}
+          value={passwordAgain.value}
+          onBlur={checkPasswordAgain}
+        />
+        <p className="text-danger bg-gradient">{passwordAgain.error}</p>
+      </div>
+      <Link className="link link-primary" to="/login">
+        register later?!
+      </Link>
+      <button className="btn btn-outline-primary btn-lg align-self-end">
+        login
+      </button>
+    </form>
   );
 };
 

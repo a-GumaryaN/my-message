@@ -2,7 +2,7 @@ import useInput from "../../hooks/useInput/useInput";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import React from "react";
-const ForgotPassword : React.FC<{}> = (props) => {
+const ForgotPassword: React.FC<{}> = (props) => {
   const { state: email, dispatch: emailDispatch } = useInput();
   const { state: code, dispatch: codeDispatch } = useInput();
   const { state: password, dispatch: passwordDispatch } = useInput();
@@ -52,7 +52,7 @@ const ForgotPassword : React.FC<{}> = (props) => {
     return true;
   };
 
-  const submitHandler = (data:React.FormEvent) => {
+  const submitHandler = (data: React.FormEvent) => {
     data.preventDefault();
 
     if (checkEmail()) return;
@@ -67,62 +67,59 @@ const ForgotPassword : React.FC<{}> = (props) => {
   };
 
   return (
-    <div className="col-12 container-fluid full-height bg-dark text-light d-flex flex-column align-items-center">
-      <div className="col-md-3 display-3 text-center py-5">forgot password</div>
-      <form onSubmit={submitHandler} className="col-md-3 d-flex flex-column">
-        <div>
-          <label className="display-6">enter your email</label>
-          <input
-            className="form-control"
-            type="email"
-            onChange={(e) => {
-              emailDispatch({ type: "setValue", value: e.target.value });
-            }}
-            value={email.value}
-            onBlur={checkEmail}
-          />
-          <p className="text-danger bg-gradient">{email.error}</p>
-        </div>
-        <div className={"collapse " + (codeInput && " show ")}>
-          <p className="text-warning">we send a code to your email</p>
-          <p className="text-warning">send a new code after </p>
-          <label className="display-6">code</label>
-          <input
-            className="form-control"
-            type="password"
-            onChange={(e) => {
-              codeDispatch({ type: "setValue", value: e.target.value });
-            }}
-            value={code.value}
-            onBlur={checkCode}
-          />
-          <p className="text-danger bg-gradient">{code.error}</p>
-        </div>
-        <div className={"collapse " + (passwordInput && " show ")}>
-          <p className="text-warning">enter new password</p>
-          <label className="display-6">new password</label>
-          <input
-            className="form-control"
-            type="password"
-            onChange={(e) => {
-              passwordDispatch({ type: "setValue", value: e.target.value });
-            }}
-            value={password.value}
-            onBlur={checkPassword}
-          />
-          <p className="text-danger bg-gradient">{password.error}</p>
-        </div>
-        <Link className="link link-primary" to="/register">
-          not register?!
-        </Link>
-        <Link className="link link-primary" to="/login">
-          register later?!
-        </Link>
-        <button className="btn btn-outline-primary btn-lg align-self-end">
-          {passwordInput ? "change password" : "send code"}
-        </button>
-      </form>
-    </div>
+    <form onSubmit={submitHandler} className="col-md-3 d-flex flex-column">
+      <div>
+        <label className="display-6">enter your email</label>
+        <input
+          className="form-control"
+          type="email"
+          onChange={(e) => {
+            emailDispatch({ type: "setValue", value: e.target.value });
+          }}
+          value={email.value}
+          onBlur={checkEmail}
+        />
+        <p className="text-danger bg-gradient">{email.error}</p>
+      </div>
+      <div className={"collapse " + (codeInput && " show ")}>
+        <p className="text-warning">we send a code to your email</p>
+        <p className="text-warning">send a new code after </p>
+        <label className="display-6">code</label>
+        <input
+          className="form-control"
+          type="password"
+          onChange={(e) => {
+            codeDispatch({ type: "setValue", value: e.target.value });
+          }}
+          value={code.value}
+          onBlur={checkCode}
+        />
+        <p className="text-danger bg-gradient">{code.error}</p>
+      </div>
+      <div className={"collapse " + (passwordInput && " show ")}>
+        <p className="text-warning">enter new password</p>
+        <label className="display-6">new password</label>
+        <input
+          className="form-control"
+          type="password"
+          onChange={(e) => {
+            passwordDispatch({ type: "setValue", value: e.target.value });
+          }}
+          value={password.value}
+          onBlur={checkPassword}
+        />
+        <p className="text-danger bg-gradient">{password.error}</p>
+      </div>
+      <Link className="link link-primary" to="/register">
+        not register?!
+      </Link>
+      <Link className="link link-primary" to="/login">
+        register later?!
+      </Link>
+      <button className="btn btn-outline-primary btn-lg align-self-end">
+        {passwordInput ? "change password" : "send code"}
+      </button>
+    </form>
   );
 };
 
