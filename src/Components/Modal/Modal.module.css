@@ -1,0 +1,15 @@
+.modal-back {
+	background-color: rgba(0,0,0,0.6);
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+    flex-direction: column;
+	position: fixed;
+	justify-content: center;
+	align-items: center;
+	z-index: 10;
+}
+
+.card{
+	background-color: #16243b;
+}

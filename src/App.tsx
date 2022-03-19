@@ -8,14 +8,21 @@ import "./App.css";
 import { useSelector } from "react-redux";
 import Overlay from "./Components/Overlay/Overlay";
 import AddProfileImage from "./Components/AddProfileImage/AddProfileImage";
+import Modal from "./Components/Modal/Modal";
+
 
 function App() {
   const { scroll, scroll_bg } = useSelector((state: any) => {
     return state.theme;
   });
 
+  const { message } = useSelector((state: any) => {
+    return state.modal;
+  });
+
   return (
     <div className={scroll + scroll_bg + "App full-height "}>
+      {message && < Modal />}
       <BrowserRouter>
         <Routes>
           <Route
@@ -50,7 +57,7 @@ function App() {
               </Overlay>
             }
           />
-          
+
           <Route
             path="/add-profile-image"
             element={

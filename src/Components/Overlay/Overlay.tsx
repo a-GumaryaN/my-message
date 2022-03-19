@@ -9,7 +9,7 @@ const Overlay: FC<{ pageName: string }> = ({ children, pageName }) => {
     <div
       className={
         bg +
-        " col-12 container-fluid full-height " +
+        "col-12 container-fluid full-height " +
         "text-light d-flex flex-column " +
         " align-items-center"
       }

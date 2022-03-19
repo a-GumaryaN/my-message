@@ -13,28 +13,28 @@ const LoginPage: React.FC<{}> = (props) => {
   const checkEmail = (): boolean => {
     if (!email.value) {
       emailDispatch({ type: "setError", error: "email in empty" });
-      return true;
+      return false;
     }
     if (!email.value.includes("@") || !email.value.includes(".com")) {
       emailDispatch({ type: "setError", error: "email not valid" });
-      return true;
+      return false;
     }
-    return false;
+    return true;
   };
 
   const checkPassword = (): boolean => {
     if (!password.value) {
       passwordDispatch({ type: "setError", error: "password in empty" });
-      return true;
+      return false;
     }
-    if (password.value.length < 8) {
+    if (password.value.length < 1) {
       passwordDispatch({
         type: "setError",
         error: "password most be more than 8 characters",
       });
-      return true;
+      return false;
     }
-    return false;
+    return true;
   };
 
   const submitHandler = async (data: React.FormEvent) => {
@@ -59,7 +59,9 @@ const LoginPage: React.FC<{}> = (props) => {
         }
       }`;
 
-      const { data }: any = usefetch(query);
+      const { data }: any =await usefetch(query);
+
+      
     } catch (error) {
       console.log(error);
     }
