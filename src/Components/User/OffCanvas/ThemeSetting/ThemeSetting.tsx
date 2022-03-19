@@ -55,6 +55,29 @@ const ThemeSetting: FC<{}> = () => {
       scroll: " scroll_primary ",
       scroll_bg: " scroll_light ",
     },
+    {
+      name: "yellow_light",
+      border: " border-warning ",
+      text: " text-dark ",
+      bg_active: " bg-active-warning ",
+      bg: " bg-light ",
+      btn: " btn-outline-warning ",
+      text_import: " text-warning ",
+      scroll: " scroll_warning ",
+      scroll_bg: " scroll_light ",
+    },
+    {
+      name: "yellow_dark",
+      border: " border-warning ",
+      text: " text-light ",
+      bg_active: " bg-active-warning ",
+      bg: " bg-dark ",
+      btn: " btn-outline-warning ",
+      text_import: " text-warning ",
+      scroll: " scroll_warning ",
+      scroll_bg: " scroll_dark ",
+    },
+
   ];
 
   return (
