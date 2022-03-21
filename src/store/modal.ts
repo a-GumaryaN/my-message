@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = { type: "warning", message: "error", title: "error" };
+const initialState = { type: "", message: "", title: "" };
 
 const modal = createSlice({
     name: "modal",

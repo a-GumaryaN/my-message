@@ -103,14 +103,14 @@ const ThemeSetting: FC<{}> = () => {
   ];
 
   return (
-    <div className="d-flex flex-row flex-wrap p-2">
+    <div className="col-12 d-flex flex-row flex-wrap justify-content-center p-2">
       {themes.map((item) => {
         return (
           <button
             onClick={() => {
               dispatch(setTheme(item));
             }}
-            className={text + "col-5 btn btn-lg m-1 col-3 " + item.btn}
+            className={text + "col-5 btn btn-lg m-1 col-3 overflow- " + item.btn}
           >
             {item.name}
           </button>

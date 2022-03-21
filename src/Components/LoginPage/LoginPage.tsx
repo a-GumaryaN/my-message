@@ -1,12 +1,15 @@
-import { Link } from "react-router-dom";
 import useInput from "../../hooks/useInput/useInput";
 import { login } from "../../store/authentication";
 import { useDispatch } from "react-redux";
 import usefetch from "../../hooks/useFetch/useFetch";
 import React from "react";
+import { setMessage } from "../../store/modal";
+import  { useNavigate,Link } from 'react-router-dom'
 
 const LoginPage: React.FC<{}> = (props) => {
   const dispatch = useDispatch();
+
+  const navigate=useNavigate();
 
   const { state: email, dispatch: emailDispatch } = useInput();
   const { state: password, dispatch: passwordDispatch } = useInput();
@@ -59,9 +62,39 @@ const LoginPage: React.FC<{}> = (props) => {
         }
       }`;
 
-      const { data }: any =await usefetch(query);
+      const { data }: any = await usefetch(query);
 
-      
+      if (data.login.error) {
+        dispatch(setMessage({
+          title: "error",
+          type: "error",
+          message: data.login.error
+        }));
+
+      }
+
+      const token = data.login.token,
+        fullName = data.login.user.fullName,
+        profileImage = data.login.user.profileImage || null,
+        user = {
+          fullName,
+          token,
+          email: email.value,
+          profileImage
+        }
+
+      localStorage.setItem('my-message', JSON.stringify(user));
+
+      dispatch(setMessage({
+        title: "success",
+        type: "success",
+        message: "logged in successfully"
+      }));
+
+      dispatch(login(user));
+
+      navigate('../user',{replace:true});
+
     } catch (error) {
       console.log(error);
     }

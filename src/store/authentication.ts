@@ -8,7 +8,7 @@ const initialState: {
 } = {
   fullName: "",
   email: "",
-  token: "",
+  token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJ0ZXN0QGdtYWlsLmNvbSIsImlhdCI6MTY0Nzc5MjQ4MywiZXhwIjoxNjQ3OTY1MjgzfQ.aQndKalWD18B50a-vIltHRTxtjkQ4Whm4jCMEPjL94Y",
   profileImage: null,
 };
 

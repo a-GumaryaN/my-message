@@ -12,9 +12,12 @@ const selectedPerson = createSlice({
     setPerson: (state, action) => {
       return state = action.payload;
     },
+    desetPerson: (state, action) => {
+      return state = initialState;
+    },
   },
 });
 
-export const { setPerson } = selectedPerson.actions;
+export const { setPerson,desetPerson } = selectedPerson.actions;
 
 export default selectedPerson.reducer;

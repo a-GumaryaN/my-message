@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 import Overlay from "./Components/Overlay/Overlay";
 import AddProfileImage from "./Components/AddProfileImage/AddProfileImage";
 import Modal from "./Components/Modal/Modal";
+import GetCode from "./Components/GetCode/GetCode";
 
 
 function App() {
@@ -54,6 +55,15 @@ function App() {
             element={
               <Overlay pageName="forgot password">
                 <ForgotPassword />
+              </Overlay>
+            }
+          />
+
+          <Route
+            path="/get-code"
+            element={
+              <Overlay pageName="get code">
+                <GetCode />
               </Overlay>
             }
           />

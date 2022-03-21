@@ -23,10 +23,10 @@ const Modal = () => {
         return state.modal;
     });
 
-    let textColor = " text-danger",
+    let textColor = " text-danger ",
         btnType = " btn-outline-danger ";
 
-    if (type === "message") {
+    if (type === "success") {
         textColor = " text-success";
         btnType = " btn-outline-success ";
     }
