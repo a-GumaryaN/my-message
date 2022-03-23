@@ -1,15 +1,20 @@
 import useInput from "../../hooks/useInput/useInput";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { setMessage } from "../../store/modal";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import usefetch from "../../hooks/useFetch/useFetch";
 import React from "react";
+import { setVerifyInfo } from "../../store/verify_hash";
+
 const GetCode: React.FC<{}> = (props) => {
   const { state: code, dispatch: codeDispatch } = useInput();
   const [button, setButton] = useState(true);
-  const [count, setCount] = useState(3);
+  const [count, setCount] = useState(120);
 
   const dispatch = useDispatch();
+
+  const navigate = useNavigate();
 
   const checkCode = () => {
     if (!code.value) {
@@ -26,17 +31,53 @@ const GetCode: React.FC<{}> = (props) => {
     return false;
   };
 
-  const submitHandler = (data: React.FormEvent) => {
-    data.preventDefault();
+  const { verify_hash, email } = useSelector((state: any) => {
+    return state.verify_hash;
+  })
+
+  const submitHandler = (target: React.FormEvent) => {
+    target.preventDefault();
   };
 
   const resendCode = async () => {
-    dispatch(setMessage({ title: "resended !", type: "warning", message: "code resended..." }));
+    const ResendQuery = `
+    mutation{
+      Register_1(email:"${email.value}"){
+        error,
+        verify_hash
+      }
+    }`;
+
+    const { data } = await usefetch(ResendQuery);
+    dispatch(setVerifyInfo({ verify_hash, email: email.value, code: "" }));
+    alert("verify_hash saved...");
+    dispatch(setMessage({ title: "resend !", type: "success", message: "code resend again..." }));
+    setButton(true);
     setCount(120);
   }
 
-  const goNext = () => {
+  const goNext = async() => {
     if (checkCode()) return;
+
+    const CodeVerifyQuery = `mutation{
+      Register_2(email:"${email}",code:"${code.value}",verify_hash:"${verify_hash}"){
+        result
+      }
+    }`;
+
+    const { data } = await usefetch(CodeVerifyQuery);
+
+    if (data.Register_2.result === 'invalid') {
+      dispatch(setMessage({
+        title: "error",
+        type: "error",
+        message: "code not valid"
+      }));
+      return;
+    }
+
+    navigate('../complete-info', { replace: false });
+
   }
 
   useEffect(() => {
@@ -49,8 +90,8 @@ const GetCode: React.FC<{}> = (props) => {
 
 
   return (
-    <form onSubmit={submitHandler} className="col-12 col-sm-7 col-md-5 col-xl-4 d-flex flex-column">
-      <p>we send a code to your email !</p>
+    <form onSubmit={submitHandler} className="col-12 col-sm-10 col-md-6 col-xl-4 d-flex flex-column">
+      <p className="font-2">we send a code to your email !</p>
       <div>
         <label className="display-6">code :</label>
         <input
@@ -69,13 +110,13 @@ const GetCode: React.FC<{}> = (props) => {
 
       <div className="col-12 d-flex flex-column flex-md-row justify-content-between">
 
-        <button onClick={resendCode} className={"col-12 my-2 col-md-5 col-lg-3 " +
+        <button onClick={resendCode} className={"col-12 my-2 col-md-5 col-lg-4 col-xl-3 " +
           " btn btn-outline-primary btn-lg " +
           (button && "disabled")}>
           resend
         </button>
 
-        <button onClick={goNext} className="col-12 my-2 col-md-5 col-lg-3  btn btn-outline-primary btn-lg ">
+        <button onClick={goNext} className="col-12 my-2 col-md-5 col-lg-4 col-xl-3  btn btn-outline-primary btn-lg ">
           go !
         </button>
       </div>

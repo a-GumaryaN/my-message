@@ -4,9 +4,10 @@ import OffCanvas from "./OffCanvas";
 import authentication from "./authentication";
 import theme from "./theme";
 import modal from "./modal";
+import verify_hash from "./verify_hash";
 
 const store = configureStore({
-  reducer: { OffCanvas, selectedPerson, authentication, theme ,modal },
+  reducer: { OffCanvas, selectedPerson, authentication, theme, modal, verify_hash },
 });
 
 export default store;

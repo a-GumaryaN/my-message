@@ -10,6 +10,7 @@ import Overlay from "./Components/Overlay/Overlay";
 import AddProfileImage from "./Components/AddProfileImage/AddProfileImage";
 import Modal from "./Components/Modal/Modal";
 import GetCode from "./Components/GetCode/GetCode";
+import CompleteInfo from "./Components/CompleteInfo/CompleteInfo";
 
 
 function App() {
@@ -27,7 +28,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route
-            path="/"
+            path=""
             element={
               <Overlay pageName="Login">
                 <LoginPage />
@@ -76,6 +77,17 @@ function App() {
               </Overlay>
             }
           />
+          
+          <Route
+            path="/complete-info"
+            element={
+              <Overlay pageName="complete information">
+                <CompleteInfo />
+              </Overlay>
+            }
+          />
+        
+
           <Route path="/user" element={<User />} />
         </Routes>
       </BrowserRouter>
