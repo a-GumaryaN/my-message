@@ -1,38 +1,47 @@
-import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import React, { useEffect } from "react";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import LoginPage from "./Components/LoginPage/LoginPage";
 import Register from "./Components/Register/Register";
 import ForgotPassword from "./Components/ForgotPassword/ForgotPassword";
 import User from "./Components/User/User";
 import "./App.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Overlay from "./Components/Overlay/Overlay";
 import AddProfileImage from "./Components/AddProfileImage/AddProfileImage";
 import Modal from "./Components/Modal/Modal";
 import GetCode from "./Components/GetCode/GetCode";
 import CompleteInfo from "./Components/CompleteInfo/CompleteInfo";
+import { login } from "./store/authentication";
 
 
 function App() {
+
   const { scroll, scroll_bg } = useSelector((state: any) => {
+    return state.theme;
+  });
+
+  const dispatch = useDispatch();
+
+  const { token } = useSelector((state: any) => {
     return state.theme;
   });
 
   const { message } = useSelector((state: any) => {
     return state.modal;
-  });
+  }); 
+
+
 
   return (
     <div className={scroll + scroll_bg + "App full-height "}>
       {message && < Modal />}
+
       <BrowserRouter>
         <Routes>
           <Route
             path=""
             element={
-              <Overlay pageName="Login">
-                <LoginPage />
-              </Overlay>
+              <User />
             }
           />
           <Route
@@ -77,7 +86,7 @@ function App() {
               </Overlay>
             }
           />
-          
+
           <Route
             path="/complete-info"
             element={
@@ -86,9 +95,6 @@ function App() {
               </Overlay>
             }
           />
-        
-
-          <Route path="/user" element={<User />} />
         </Routes>
       </BrowserRouter>
     </div>

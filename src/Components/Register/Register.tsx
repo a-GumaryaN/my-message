@@ -3,18 +3,15 @@ import { useNavigate, Link } from 'react-router-dom'
 import usefetch from "../../hooks/useFetch/useFetch";
 import { setMessage } from "../../store/modal";
 import { useDispatch } from "react-redux";
-import { setVerifyInfo } from "../../store/verify_hash";
+import { login } from "../../store/authentication";
 
 import React from "react";
 const Register: React.FC<{}> = (props) => {
-  const { state: fullName, dispatch: fullNameDispatch } = useInput();
   const { state: email, dispatch: emailDispatch } = useInput();
-  const { state: password, dispatch: passwordDispatch } = useInput();
-  const { state: passwordAgain, dispatch: passwordAgainDispatch } = useInput();
-
-  const dispatch = useDispatch();
 
   const navigate = useNavigate();
+
+  const dispatch = useDispatch();
 
   const checkEmail = () => {
     if (!email.value) {
@@ -27,6 +24,7 @@ const Register: React.FC<{}> = (props) => {
     }
     return false;
   };
+
   const submitHandler = async (target: React.FormEvent) => {
     target.preventDefault();
 
@@ -34,31 +32,29 @@ const Register: React.FC<{}> = (props) => {
 
     const RegisterQuery = `
     mutation{
-      Register_1(email:"${email.value}"){
-        error,
-        verify_hash
+      setVerifyCode(email:"${email.value}"){
+        error
       }
     }`;
 
     const { data } = await usefetch(RegisterQuery);
 
-
-    if (data.Register_1.error) {
-      dispatch(setMessage({ title: 'error', type: "error", message: data.Register_1.error }));
+    if (data.setVerifyCode.error) {
+      dispatch(setMessage({
+        title: "error",
+        type: "error",
+        message: data.setVerifyCode.error
+      }));
       return;
     }
-
-    const verify_hash = data.Register_1.verify_hash;
-
-    dispatch(setVerifyInfo({ verify_hash, email: email.value, code: "" }));
-
-    alert("verify_hash saved...");
 
     dispatch(setMessage({
       title: "check email",
       type: "success",
       message: "we send a code to your email"
     }));
+
+    dispatch(login({ email: email.value }));
 
     navigate('../get-code', { replace: false });
 

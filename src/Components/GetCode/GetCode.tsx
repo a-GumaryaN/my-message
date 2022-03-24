@@ -5,16 +5,20 @@ import { setMessage } from "../../store/modal";
 import { useDispatch, useSelector } from "react-redux";
 import usefetch from "../../hooks/useFetch/useFetch";
 import React from "react";
-import { setVerifyInfo } from "../../store/verify_hash";
+import { login } from "../../store/authentication";
 
 const GetCode: React.FC<{}> = (props) => {
   const { state: code, dispatch: codeDispatch } = useInput();
   const [button, setButton] = useState(true);
-  const [count, setCount] = useState(120);
+  const [count, setCount] = useState(2);
 
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
+
+  const { email } = useSelector((state: any) => {
+    return state.authentication;
+  });
 
   const checkCode = () => {
     if (!code.value) {
@@ -31,50 +35,40 @@ const GetCode: React.FC<{}> = (props) => {
     return false;
   };
 
-  const { verify_hash, email } = useSelector((state: any) => {
-    return state.verify_hash;
-  })
-
   const submitHandler = (target: React.FormEvent) => {
     target.preventDefault();
   };
 
   const resendCode = async () => {
-    const ResendQuery = `
-    mutation{
-      Register_1(email:"${email.value}"){
-        error,
-        verify_hash
+
+    dispatch(setMessage({ title: "resend !", type: "success", message: "code resend again..." }));
+
+    setButton(true);
+
+    setCount(120);
+  }
+
+  const goNext = async () => {
+    if (checkCode()) return;
+
+    const ResendQuery = `mutation{
+      checkVerifyCode(email:"${email}",code:"${code.value}"){
+        error
       }
     }`;
 
     const { data } = await usefetch(ResendQuery);
-    dispatch(setVerifyInfo({ verify_hash, email: email.value, code: "" }));
-    alert("verify_hash saved...");
-    dispatch(setMessage({ title: "resend !", type: "success", message: "code resend again..." }));
-    setButton(true);
-    setCount(120);
-  }
 
-  const goNext = async() => {
-    if (checkCode()) return;
+    // if (data.checkVerifyCode.error) {
+    //   dispatch(setMessage({
+    //     title: "error",
+    //     type: "error",
+    //     message: data.setVerifyCode.error
+    //   }));
+    //   return;
+    // }
 
-    const CodeVerifyQuery = `mutation{
-      Register_2(email:"${email}",code:"${code.value}",verify_hash:"${verify_hash}"){
-        result
-      }
-    }`;
-
-    const { data } = await usefetch(CodeVerifyQuery);
-
-    if (data.Register_2.result === 'invalid') {
-      dispatch(setMessage({
-        title: "error",
-        type: "error",
-        message: "code not valid"
-      }));
-      return;
-    }
+    dispatch(login({ email, code: code.value }));
 
     navigate('../complete-info', { replace: false });
 

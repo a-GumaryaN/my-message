@@ -2,7 +2,7 @@ import useInput from "../../hooks/useInput/useInput";
 import { useNavigate, Link } from 'react-router-dom'
 import usefetch from "../../hooks/useFetch/useFetch";
 import { setMessage } from "../../store/modal";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../store/authentication";
 
 import React from "react";
@@ -12,6 +12,11 @@ const CompleteInfo: React.FC<{}> = (props) => {
   const { state: password, dispatch: passwordDispatch } = useInput();
   const { state: passwordAgain, dispatch: passwordAgainDispatch } = useInput();
 
+  const { email, code } = useSelector((state: any) => {
+    return state.authentication;
+  });
+
+
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
@@ -19,14 +24,6 @@ const CompleteInfo: React.FC<{}> = (props) => {
   const checkFullName = () => {
     if (!fullName.value) {
       fullNameDispatch({ type: "setError", error: "full name is empty" });
-      return true;
-    }
-    return false;
-  };
-
-  const checkBDate = () => {
-    if (!BDate.value) {
-      BDateDispatch({ type: "setError", error: "BDate not set!" });
       return true;
     }
     return false;
@@ -64,6 +61,7 @@ const CompleteInfo: React.FC<{}> = (props) => {
     }
     return false;
   };
+
   const submitHandler = async (target: React.FormEvent) => {
     target.preventDefault();
     let isFormValid = true;
@@ -76,7 +74,7 @@ const CompleteInfo: React.FC<{}> = (props) => {
 
     const RegisterQuery = `
     mutation{
-      Register_3(email:"${BDate.value}",password:"${password.value}",fullName:"${fullName.value}"){
+      Register(email:"${email}",code:"${code}",fullName:"${fullName.value}",password:"${password.value}"){
         error,
         token
       }
@@ -90,21 +88,14 @@ const CompleteInfo: React.FC<{}> = (props) => {
     }
 
     const token = data.Register.token,
-      profileImage = data.Register.user.profileImage || null,
       user = {
-        fullName,
+        fullName: fullName.value,
         token,
-        email: BDate.value,
-        profileImage
+        email,
+        profileImage: ""
       }
 
     localStorage.setItem('my-message', JSON.stringify(user));
-
-    dispatch(setMessage({
-      title: "success",
-      type: "success",
-      message: "register complete successfully!"
-    }));
 
     dispatch(login(user));
 

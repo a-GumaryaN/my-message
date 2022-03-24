@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCog, faUser, faBrush } from "@fortawesome/free-solid-svg-icons";
 
 const MainPage: FC<{}> = (props) => {
-  const { fullName, email } = useSelector((state: any) => {
+  const { fullName, profileImage } = useSelector((state: any) => {
     return state.authentication;
   });
 
@@ -50,9 +50,9 @@ const MainPage: FC<{}> = (props) => {
           style["profile-card"]
         }
       >
-        <img src={profile} className={" " + style["profile-image"]} />
+        {profileImage && <img src={profileImage} className={" " + style["profile-image"]} />}
 
-        <p className="font-2 mx-2">fullName</p>
+        <p className="font-2 mx-2">{fullName}</p>
       </div>
 
       <div className="d-flex flex-column align-items-center">

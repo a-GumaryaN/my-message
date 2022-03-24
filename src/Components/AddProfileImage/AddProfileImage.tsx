@@ -7,6 +7,7 @@ import { FormEvent } from "react";
 import { setMessage } from "../../store/modal";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { login } from "../../store/authentication";
 
 
 const AddProfileImage: FC<{}> = (props) => {
@@ -19,13 +20,11 @@ const AddProfileImage: FC<{}> = (props) => {
     return state.authentication;
   });
 
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState<any>(null);
   const [imageURL, setImageURL] = useState("");
 
   const submitHandler = (data: FormEvent) => {
     data.preventDefault();
-
-
 
     if (image) {
 
@@ -56,17 +55,23 @@ const AddProfileImage: FC<{}> = (props) => {
             message: 'problem in send data',
             title: 'upload error:'
           }));
-        })
+        });
 
-    } else navigate("../user", { replace: true });
+      const user = JSON.parse(localStorage.getItem("my-message")!);
+
+      user.profileImage = 'http://localhost:4000/profile_image/' + user.email +"/"+ image.name ;
+
+      localStorage.setItem("my-message", JSON.stringify(user));
+
+      dispatch(login(user));
+
+    } else navigate("../", { replace: true });
 
   };
 
   const fileChecker = (e: any) => {
 
     const file = e.target.files[0]
-
-    console.log(file.type);
 
 
     // if (!/image.*/.test(file.type)) {
@@ -90,8 +95,6 @@ const AddProfileImage: FC<{}> = (props) => {
 
     setImage(file);
     setImageURL(URL.createObjectURL(file));
-
-    console.log(imageURL)
 
   }
 

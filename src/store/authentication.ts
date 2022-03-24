@@ -5,11 +5,13 @@ const initialState: {
   email: string;
   token: string;
   profileImage: null | string;
+  code:string
 } = {
   fullName: "",
   email: "",
-  token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJ0ZXN0QGdtYWlsLmNvbSIsImlhdCI6MTY0Nzc5MjQ4MywiZXhwIjoxNjQ3OTY1MjgzfQ.aQndKalWD18B50a-vIltHRTxtjkQ4Whm4jCMEPjL94Y",
-  profileImage: null,
+  token: "sffdgbbfgnhg",
+  profileImage: "",
+  code:""
 };
 
 const authentication = createSlice({
@@ -17,7 +19,7 @@ const authentication = createSlice({
   initialState,
   reducers: {
     login: (state, action) => {
-      return (state = action.payload);
+      return state = action.payload;
     },
     logout: (state, action) => {
       return (state = initialState);
