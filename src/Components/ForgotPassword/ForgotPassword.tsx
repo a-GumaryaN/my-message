@@ -67,7 +67,7 @@ const ForgotPassword: React.FC<{}> = (props) => {
   };
 
   return (
-    <form onSubmit={submitHandler} className="col-md-3 d-flex flex-column">
+    <form onSubmit={submitHandler} className="col-12 col-sm-8 col-md-6 col-xl-4 d-flex flex-column">
       <div>
         <label className="display-6">enter your email</label>
         <input

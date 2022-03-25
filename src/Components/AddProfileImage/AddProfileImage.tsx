@@ -8,6 +8,7 @@ import { setMessage } from "../../store/modal";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { login } from "../../store/authentication";
+import usefetch from "../../hooks/useFetch/useFetch";
 
 
 const AddProfileImage: FC<{}> = (props) => {
@@ -23,7 +24,7 @@ const AddProfileImage: FC<{}> = (props) => {
   const [image, setImage] = useState<any>(null);
   const [imageURL, setImageURL] = useState("");
 
-  const submitHandler = (data: FormEvent) => {
+  const submitHandler = async (data: FormEvent) => {
     data.preventDefault();
 
     if (image) {
@@ -59,13 +60,30 @@ const AddProfileImage: FC<{}> = (props) => {
 
       const user = JSON.parse(localStorage.getItem("my-message")!);
 
-      user.profileImage = 'http://localhost:4000/profile_image/' + user.email +"/"+ image.name ;
+      user.profileImage = 'http://localhost:4000/profile_image/' + user.email + "/" + image.name;
+
+      const updateQuery = `mutation{
+        updateUser(user:{profileImage:"${user.profileImage}"}){
+          error
+        }
+      }`
+
+      const { error } = await usefetch(updateQuery, { token: user.token });
+
+      if (error) dispatch(setMessage({
+        type: 'error',
+        message: error,
+        title: 'upload error:'
+      }));
+
+      console.log(user);
 
       localStorage.setItem("my-message", JSON.stringify(user));
 
       dispatch(login(user));
 
-    } else navigate("../", { replace: true });
+    }
+    navigate("../", { replace: true });
 
   };
 
@@ -74,7 +92,7 @@ const AddProfileImage: FC<{}> = (props) => {
     const file = e.target.files[0]
 
 
-    // if (!/image.*/.test(file.type)) {
+    // if (!(/image.*/.test(file.type))) {
     //   dispatch(setMessage({
     //     type: 'error',
     //     message: 'only image file allowed',

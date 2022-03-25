@@ -4,15 +4,16 @@ import { useDispatch } from "react-redux";
 import usefetch from "../../hooks/useFetch/useFetch";
 import React from "react";
 import { setMessage } from "../../store/modal";
-import  { useNavigate,Link } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 
 const LoginPage: React.FC<{}> = (props) => {
   const dispatch = useDispatch();
 
-  const navigate=useNavigate();
+  const navigate = useNavigate();
 
   const { state: email, dispatch: emailDispatch } = useInput();
   const { state: password, dispatch: passwordDispatch } = useInput();
+
   const checkEmail = (): boolean => {
     if (!email.value) {
       emailDispatch({ type: "setError", error: "email in empty" });
@@ -56,7 +57,8 @@ const LoginPage: React.FC<{}> = (props) => {
           error,
           user{
             _id,
-            fullName
+            fullName,
+            profileImage
           },
           token
         }
@@ -75,7 +77,7 @@ const LoginPage: React.FC<{}> = (props) => {
 
       const token = data.login.token,
         fullName = data.login.user.fullName,
-        profileImage = data.login.user.profileImage || null,
+        profileImage = data.login.user.profileImage,
         user = {
           fullName,
           token,
@@ -93,7 +95,7 @@ const LoginPage: React.FC<{}> = (props) => {
 
       dispatch(login(user));
 
-      navigate('../user',{replace:true});
+      navigate('../', { replace: true });
 
     } catch (error) {
       console.log(error);
@@ -101,9 +103,9 @@ const LoginPage: React.FC<{}> = (props) => {
   };
 
   return (
-    <form onSubmit={submitHandler} className="col-12 col-sm-8 col-md-6 col-xl-4 d-flex flex-column">
+    <form onSubmit={submitHandler} noValidate className="col-12 col-sm-8 col-md-6 col-xl-4 d-flex flex-column">
       <div>
-        <label className="display-6">email</label>
+        <label className="font-2">email</label>
         <input
           className="form-control"
           type="email"
@@ -116,7 +118,7 @@ const LoginPage: React.FC<{}> = (props) => {
         <p className="text-danger bg-gradient">{email.error}</p>
       </div>
       <div>
-        <label className="display-6">password</label>
+        <label className="font-2">password</label>
         <input
           className="form-control"
           type="password"
@@ -128,10 +130,10 @@ const LoginPage: React.FC<{}> = (props) => {
         />
         <p className="text-danger bg-gradient">{password.error}</p>
       </div>
-      <Link className="link link-primary" to="/forgot-password">
+      <Link className="link link-primary font-2" to="/forgot-password">
         forgot your password?!
       </Link>
-      <Link className="link link-primary" to="/register">
+      <Link className="link link-primary font-2" to="/register">
         not register?!
       </Link>
 

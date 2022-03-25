@@ -1,10 +1,11 @@
 import { FC } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import style from "./MainPage.module.css";
-import profile from "../../../../assets/img/profile.jpeg";
 import { setPage } from "../../../../store/OffCanvas";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCog, faUser, faBrush } from "@fortawesome/free-solid-svg-icons";
+import { faCog, faUser, faBrush,faArrowCircleLeft } from "@fortawesome/free-solid-svg-icons";
+import { logout } from "../../../../store/authentication";
+import { useNavigate } from "react-router-dom";
 
 const MainPage: FC<{}> = (props) => {
   const { fullName, profileImage } = useSelector((state: any) => {
@@ -14,6 +15,8 @@ const MainPage: FC<{}> = (props) => {
   const { text, border, btn } = useSelector((state: any) => {
     return state.theme;
   });
+
+  const navigate=useNavigate();
 
   const dispatch = useDispatch();
 
@@ -37,6 +40,15 @@ const MainPage: FC<{}> = (props) => {
       icon: faBrush,
       clickHandler: () => {
         dispatch(setPage({ page: "themeSetting" }));
+      },
+    },
+    {
+      name: "logout",
+      icon: faArrowCircleLeft,
+      clickHandler: () => {
+        localStorage.removeItem('my-message');
+        dispatch(logout({}));
+        navigate('../login');
       },
     },
   ];
