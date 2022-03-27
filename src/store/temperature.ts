@@ -2,18 +2,24 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState: {
   email: string;
-  nextAction:string;
+  fullName: string;
+  code: string;
+  profileImage: string;
+  nextAction: string;
 } = {
   email: "",
-  nextAction:""
+  fullName: "",
+  code: "",
+  profileImage: "",
+  nextAction: "",
 };
 
 const temperature = createSlice({
   name: "authentication",
   initialState,
   reducers: {
-    setTemp:(state,actions)=>{
-        return state=actions.payload;
+    setTemp: (state, actions) => {
+      return state = actions.payload;
     }
   },
 });

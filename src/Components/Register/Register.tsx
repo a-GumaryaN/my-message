@@ -13,7 +13,7 @@ const CompleteInfo: React.FC<{}> = (props) => {
   const { state: passwordAgain, dispatch: passwordAgainDispatch } = useInput();
 
   const { email, code } = useSelector((state: any) => {
-    return state.authentication;
+    return state.temperature;
   });
 
 
@@ -62,7 +62,7 @@ const CompleteInfo: React.FC<{}> = (props) => {
     return false;
   };
 
-  const register=async()=>{
+  const register = async () => {
     let isFormValid = true;
 
     isFormValid = isFormValid && checkFullName();
@@ -73,14 +73,14 @@ const CompleteInfo: React.FC<{}> = (props) => {
 
     const RegisterQuery = `
     mutation{
-      Register(email:"${email}",code:"${code}",fullName:"${fullName.value}",password:"${password.value}"){
+      Register(email:"${email}",code:"${code}",password:"${password.value}",fullName:"${fullName.value}"){
         error,
         token
       }
-    }`;
+      }`;
 
     const { Register } = (await usefetch(RegisterQuery)).data;
-
+    
     if (Register.error) {
       dispatch(setMessage({ title: 'error', type: "error", message: Register.error }));
       return;
@@ -106,7 +106,7 @@ const CompleteInfo: React.FC<{}> = (props) => {
   };
 
   return (
-    <form onSubmit={submitHandler} className="col-12 col-sm-8 col-md-6 col-xl-4 d-flex flex-column">
+    <form onSubmit={submitHandler} className="d-flex flex-column">
       <div>
         <label className="display-6">full name</label>
         <input
@@ -149,9 +149,6 @@ const CompleteInfo: React.FC<{}> = (props) => {
         />
         <p className="text-danger bg-gradient">{passwordAgain.error}</p>
       </div>
-      <Link className="link link-primary" to="/login">
-        register later?!
-      </Link>
       <div className="col-12 d-flex flex-column flex-md-row justify-content-between">
 
         <button onClick={() => { navigate(-1) }} className="col-12 my-2 col-md-5 col-lg-4 col-xl-3  btn btn-outline-primary btn-lg ">
@@ -162,6 +159,10 @@ const CompleteInfo: React.FC<{}> = (props) => {
           register
         </button>
       </div>
+      <Link className="link link-primary my-2" to="/login">
+        register later?!
+      </Link>
+
     </form>
   );
 };

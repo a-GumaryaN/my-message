@@ -5,9 +5,9 @@ import { setMessage } from "../../store/modal";
 import { useDispatch, useSelector } from "react-redux";
 import usefetch from "../../hooks/useFetch/useFetch";
 import React from "react";
-import { login } from "../../store/authentication";
+import { setTemp } from "../../store/temperature";
 
-const GetCode: React.FC<{}> = (props) => {
+const GetCodeForReset: React.FC<{}> = (props) => {
   const { state: code, dispatch: codeDispatch } = useInput();
   const [button, setButton] = useState(true);
   const [count, setCount] = useState(2);
@@ -42,24 +42,23 @@ const GetCode: React.FC<{}> = (props) => {
   const resendCode = async () => {
 
     dispatch(setMessage({ title: "resend !", type: "success", message: "code resend again..." }));
-
-
+    
     const setCodeQuery = `
     mutation{
-      setForgotEmailCode(email:"${email.value}"){
-        error,
-        result
-      }
-    }
+      setForgotEmailCode(email:"${email}"){
+       error,
+       result
+     }
+     }
     `;
 
-    const serCodeResult = (await usefetch(setCodeQuery)).data;
+    const {setForgotEmailCode} = (await usefetch(setCodeQuery)).data;
 
-    if (serCodeResult.setForgotEmailCode.error) {
+    if (setForgotEmailCode.error) {
       dispatch(setMessage({
         type: 'error',
         title: 'error',
-        message: serCodeResult.setForgotEmailCode.error
+        message: setForgotEmailCode.error
       }));
       return;
     }
@@ -69,8 +68,6 @@ const GetCode: React.FC<{}> = (props) => {
       title: 'code resend',
       message: 'new code resend to your email again'
     }));
-
-    dispatch(login({ email: email.value }));
 
     setButton(true);
 
@@ -100,7 +97,7 @@ const GetCode: React.FC<{}> = (props) => {
     //   return;
     // }
 
-    dispatch(login({ email, code: code.value }));
+    dispatch(setTemp({ email, code: code.value }));
 
     console.log(nextAction);
 
@@ -118,7 +115,7 @@ const GetCode: React.FC<{}> = (props) => {
 
 
   return (
-    <form onSubmit={submitHandler} className="col-12 col-sm-10 col-md-6 col-xl-4 d-flex flex-column">
+    <form onSubmit={submitHandler} className="d-flex flex-column">
       <p className="font-2">we send a code to your email !</p>
       <div>
         <label className="display-6">code :</label>
@@ -152,9 +149,8 @@ const GetCode: React.FC<{}> = (props) => {
         </button>
       </div>
 
-
     </form >
   );
 };
 
-export default GetCode;
+export default GetCodeForReset;

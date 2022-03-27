@@ -16,7 +16,7 @@ const ForgotPassword: React.FC<{}> = (props) => {
 
   const checkEmail = () => {
     if (!email.value) {
-      emailDispatch({ type: "setError", error: "email in empty" });
+      emailDispatch({ type: "setError", error: "email is empty" });
       return true;
     }
     if (!email.value.includes("@") || !email.value.includes(".com")) {
@@ -61,12 +61,12 @@ const ForgotPassword: React.FC<{}> = (props) => {
 
     dispatch(setTemp({email:email.value,nextAction:'reset-password'}));
 
-    navigate('../get-code', { replace: false });
+    navigate('../get-code-for-reset', { replace: false });
 
   }
 
   return (
-    <form onSubmit={submitHandler} className="col-12 col-sm-8 col-md-6 col-xl-4 d-flex flex-column">
+    <form onSubmit={submitHandler} className="d-flex flex-column">
       <div>
         <label className="display-6">enter your email</label>
         <input
@@ -81,11 +81,11 @@ const ForgotPassword: React.FC<{}> = (props) => {
         <p className="text-danger bg-gradient">{email.error}</p>
       </div>
 
-      <div className="col-12 d-flex flex-row justify-content-between">
-        <button onClick={() => { navigate('../login', { replace: false }) }} className="btn btn-outline-primary btn-lg align-self-end">
+      <div className="col-12 d-flex flex-md-row flex-column justify-content-between">
+        <button onClick={() => { navigate('../login', { replace: false }) }} className="col-12 my-2 col-md-5 col-lg-4 col-xl-3  btn btn-outline-primary btn-lg align-self-end">
           back
         </button>
-        <button onClick={setCode} className="btn btn-outline-primary btn-lg align-self-end">
+        <button onClick={setCode} className="col-12 my-2 col-md-5 col-lg-4 col-xl-3  btn btn-outline-primary btn-lg align-self-end">
           send code
         </button>
 

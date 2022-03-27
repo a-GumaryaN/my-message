@@ -54,14 +54,14 @@ const Register: React.FC<{}> = (props) => {
       message: "we send a code to your email"
     }));
 
-    dispatch(setTemp({ email: email.value,nextAction:"Register" }));
+    dispatch(setTemp({ email: email.value, nextAction: "Register" }));
 
-    navigate('../get-code', { replace: false });
+    navigate('../get-code-for-register', { replace: false });
 
   };
 
   return (
-    <form onSubmit={submitHandler} className="col-12 col-sm-8 col-md-6 col-xl-4 d-flex flex-column">
+    <form onSubmit={submitHandler} className="d-flex flex-column">
       <div>
         <label className="display-6">email</label>
         <input
@@ -75,12 +75,13 @@ const Register: React.FC<{}> = (props) => {
         />
         <p className="text-danger bg-gradient">{email.error}</p>
       </div>
-      <Link className="link link-primary" to="/login">
-        register later?!
-      </Link>
-      <button className="btn btn-outline-primary btn-lg align-self-end">
+      <button className="col-12 my-2 col-md-5 col-lg-4 col-xl-3  btn btn-outline-primary btn-lg align-self-end">
         next
       </button>
+      <Link className="link link-primary my-2" to="/login">
+        register later?!
+      </Link>
+
     </form>
   );
 };

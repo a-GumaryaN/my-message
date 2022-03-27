@@ -9,8 +9,10 @@ import { useDispatch, useSelector } from "react-redux";
 import Overlay from "./Components/Overlay/Overlay";
 import AddProfileImage from "./Components/AddProfileImage/AddProfileImage";
 import Modal from "./Components/Modal/Modal";
-import GetCode from "./Components/GetCode/GetCode";
+import GetCodeForRegister from "./Components/GetCodeForRegister/GetCodeForRegister";
+import GetCodeForReset from "./Components/GetCodeForReset/GetCodeForReset";
 import Register from "./Components/Register/Register";
+import ResetPassword from "./Components/ResetPassword/ResetPassword";
 
 
 function App() {
@@ -78,10 +80,19 @@ function App() {
           />
 
           <Route
-            path="/get-code"
+            path="/get-code-for-register"
             element={
               <Overlay pageName="get code">
-                <GetCode />
+                <GetCodeForRegister />
+              </Overlay>
+            }
+          />
+          
+          <Route
+            path="/get-code-for-reset"
+            element={
+              <Overlay pageName="get code">
+                <GetCodeForReset />
               </Overlay>
             }
           />
@@ -94,6 +105,17 @@ function App() {
               </Overlay>
             }
           />
+          
+          <Route
+            path="/reset-password"
+            element={
+              <Overlay pageName="new password">
+                <ResetPassword />
+              </Overlay>
+            }
+          />
+
+
         </Routes>
       </BrowserRouter>
     </div>

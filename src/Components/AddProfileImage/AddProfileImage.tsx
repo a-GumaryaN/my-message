@@ -39,48 +39,39 @@ const AddProfileImage: FC<{}> = (props) => {
         }
       }
 
-      axios
-        .post('http://localhost:4000/upload', formData, config)
-        .then((res) => {
-          dispatch(setMessage({
-            type: 'success',
-            message: 'image uploaded successfully',
-            title: 'upload'
-          }));
-          console.log(res);
-          navigate("../user", { replace: true });
-        })
-        .catch((error) => {
-          dispatch(setMessage({
-            type: 'error',
-            message: 'problem in send data',
-            title: 'upload error:'
-          }));
-        });
+      try {
 
-      const user = JSON.parse(localStorage.getItem("my-message")!);
+        axios.post('http://localhost:4000/upload', formData, config);
 
-      user.profileImage = 'http://localhost:4000/profile_image/' + user.email + "/" + image.name;
 
-      const updateQuery = `mutation{
+
+        const user = JSON.parse(localStorage.getItem("my-message")!);
+
+        user.profileImage = 'http://localhost:4000/profile_image/' + user.email + "/" + image.name;
+
+        const updateQuery = `mutation{
         updateUser(user:{profileImage:"${user.profileImage}"}){
           error
         }
       }`
 
-      const { error } = await usefetch(updateQuery, { token: user.token });
+        const { updateUser } = (await usefetch(updateQuery, { token: user.token })).data;
 
-      if (error) dispatch(setMessage({
-        type: 'error',
-        message: error,
-        title: 'upload error:'
-      }));
+        if (updateUser.error) throw updateUser.error;
 
-      console.log(user);
+        localStorage.setItem("my-message", JSON.stringify(user));
 
-      localStorage.setItem("my-message", JSON.stringify(user));
+        dispatch(login(user));
 
-      dispatch(login(user));
+        navigate('../');
+
+      } catch (error) {
+        dispatch(setMessage({
+          type: 'error',
+          message: error,
+          title: 'error'
+        }));
+      }
 
     }
     navigate("../", { replace: true });
@@ -121,7 +112,7 @@ const AddProfileImage: FC<{}> = (props) => {
       onSubmit={submitHandler}
       style={{ height: "70%" }}
       className={
-        "col-12 col-md-7 d-flex flex-column align-items-center justify-content-between"
+        "d-flex flex-column align-items-center justify-content-between"
       }
     >
       <p className="display-6">add a profile image</p>

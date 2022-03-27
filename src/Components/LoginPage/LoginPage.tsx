@@ -16,7 +16,7 @@ const LoginPage: React.FC<{}> = (props) => {
 
   const checkEmail = (): boolean => {
     if (!email.value) {
-      emailDispatch({ type: "setError", error: "email in empty" });
+      emailDispatch({ type: "setError", error: "email is empty" });
       return false;
     }
     if (!email.value.includes("@") || !email.value.includes(".com")) {
@@ -28,7 +28,7 @@ const LoginPage: React.FC<{}> = (props) => {
 
   const checkPassword = (): boolean => {
     if (!password.value) {
-      passwordDispatch({ type: "setError", error: "password in empty" });
+      passwordDispatch({ type: "setError", error: "password is empty" });
       return false;
     }
     if (password.value.length < 1) {
@@ -103,7 +103,7 @@ const LoginPage: React.FC<{}> = (props) => {
   };
 
   return (
-    <form onSubmit={submitHandler} noValidate className="col-12 col-sm-8 col-md-6 col-xl-4 d-flex flex-column">
+    <form onSubmit={submitHandler} noValidate className="col-12 d-flex flex-column">
       <div>
         <label className="font-2">email</label>
         <input
@@ -130,16 +130,17 @@ const LoginPage: React.FC<{}> = (props) => {
         />
         <p className="text-danger bg-gradient">{password.error}</p>
       </div>
-      <Link className="link link-primary font-2" to="/forgot-password">
+      <button className="col-12 my-2 col-md-5 col-lg-4 col-xl-3  btn btn-outline-primary btn-lg align-self-end">
+        login
+      </button>
+      <Link className="link link-primary font-2 my-2" to="/forgot-password">
         forgot your password?!
       </Link>
       <Link className="link link-primary font-2" to="/get-email">
         not register?!
       </Link>
 
-      <button className="btn btn-outline-primary btn-lg align-self-end">
-        login
-      </button>
+      
     </form>
   );
 };
