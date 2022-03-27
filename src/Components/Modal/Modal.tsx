@@ -42,7 +42,7 @@ const Modal = () => {
                     {title}
                 </div>
                 <div
-                    className={"row justify-content-center align-content-center font-2 " + textColor}
+                    className={"row justify-content-center align-content-center font-3 " + textColor}
                 >
                     {message}
                 </div>

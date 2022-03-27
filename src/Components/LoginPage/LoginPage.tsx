@@ -133,7 +133,7 @@ const LoginPage: React.FC<{}> = (props) => {
       <Link className="link link-primary font-2" to="/forgot-password">
         forgot your password?!
       </Link>
-      <Link className="link link-primary font-2" to="/register">
+      <Link className="link link-primary font-2" to="/get-email">
         not register?!
       </Link>
 

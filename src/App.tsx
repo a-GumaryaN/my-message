@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import LoginPage from "./Components/LoginPage/LoginPage";
-import Register from "./Components/Register/Register";
+import GetEmail from "./Components/GetEmail/GetEmail";
 import ForgotPassword from "./Components/ForgotPassword/ForgotPassword";
 import User from "./Components/User/User";
 import "./App.css";
@@ -10,8 +10,7 @@ import Overlay from "./Components/Overlay/Overlay";
 import AddProfileImage from "./Components/AddProfileImage/AddProfileImage";
 import Modal from "./Components/Modal/Modal";
 import GetCode from "./Components/GetCode/GetCode";
-import CompleteInfo from "./Components/CompleteInfo/CompleteInfo";
-import { login } from "./store/authentication";
+import Register from "./Components/Register/Register";
 
 
 function App() {
@@ -28,7 +27,7 @@ function App() {
 
   const { message } = useSelector((state: any) => {
     return state.modal;
-  }); 
+  });
 
 
 
@@ -53,10 +52,10 @@ function App() {
             }
           />
           <Route
-            path="/register"
+            path="/get-email"
             element={
               <Overlay pageName="Register">
-                <Register />
+                <GetEmail />
               </Overlay>
             }
           />
@@ -65,6 +64,15 @@ function App() {
             element={
               <Overlay pageName="forgot password">
                 <ForgotPassword />
+              </Overlay>
+            }
+          />
+
+          <Route
+            path="/Register"
+            element={
+              <Overlay pageName="complete information">
+                <Register />
               </Overlay>
             }
           />
@@ -83,15 +91,6 @@ function App() {
             element={
               <Overlay pageName="profile image">
                 <AddProfileImage />
-              </Overlay>
-            }
-          />
-
-          <Route
-            path="/complete-info"
-            element={
-              <Overlay pageName="complete information">
-                <CompleteInfo />
               </Overlay>
             }
           />

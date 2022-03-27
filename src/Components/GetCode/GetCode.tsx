@@ -16,8 +16,8 @@ const GetCode: React.FC<{}> = (props) => {
 
   const navigate = useNavigate();
 
-  const { email } = useSelector((state: any) => {
-    return state.authentication;
+  const { email, nextAction } = useSelector((state: any) => {
+    return state.temperature;
   });
 
   const checkCode = () => {
@@ -43,6 +43,35 @@ const GetCode: React.FC<{}> = (props) => {
 
     dispatch(setMessage({ title: "resend !", type: "success", message: "code resend again..." }));
 
+
+    const setCodeQuery = `
+    mutation{
+      setForgotEmailCode(email:"${email.value}"){
+        error,
+        result
+      }
+    }
+    `;
+
+    const serCodeResult = (await usefetch(setCodeQuery)).data;
+
+    if (serCodeResult.setForgotEmailCode.error) {
+      dispatch(setMessage({
+        type: 'error',
+        title: 'error',
+        message: serCodeResult.setForgotEmailCode.error
+      }));
+      return;
+    }
+
+    dispatch(setMessage({
+      type: 'success',
+      title: 'code resend',
+      message: 'new code resend to your email again'
+    }));
+
+    dispatch(login({ email: email.value }));
+
     setButton(true);
 
     setCount(120);
@@ -51,26 +80,31 @@ const GetCode: React.FC<{}> = (props) => {
   const goNext = async () => {
     if (checkCode()) return;
 
-    const ResendQuery = `mutation{
-      checkVerifyCode(email:"${email}",code:"${code.value}"){
-        error
+    const checkVerifyCodeQuery = `mutation{
+      checkVerifyCode(email:"${email}",code:"${code}"){
+        error,
+        result
       }
     }`;
 
-    const { data } = await usefetch(ResendQuery);
+    const checkVerifyCodeResult = (await usefetch(checkVerifyCodeQuery)).data;
 
-    // if (data.checkVerifyCode.error) {
+    console.log(email + ' ' + code.value)
+
+    // if (checkVerifyCodeResult.checkVerifyCode.error) {
     //   dispatch(setMessage({
     //     title: "error",
     //     type: "error",
-    //     message: data.setVerifyCode.error
+    //     message: checkVerifyCodeResult.checkVerifyCode.error
     //   }));
     //   return;
     // }
 
     dispatch(login({ email, code: code.value }));
 
-    navigate('../complete-info', { replace: false });
+    console.log(nextAction);
+
+    navigate(('../' + nextAction), { replace: false });
 
   }
 
@@ -99,21 +133,26 @@ const GetCode: React.FC<{}> = (props) => {
         />
         <p className="text-danger bg-gradient">{code.error}</p>
       </div>
+      <button onClick={resendCode} className={"col-12 my-2 col-md-5 col-lg-4 col-xl-3 " +
+        " btn btn-outline-primary btn-lg " +
+        (button && "disabled")}>
+        resend
+      </button>
 
       <p className="text-warning">send another code after {Math.floor(count / 60)} :  {(count % 60)}</p>
 
       <div className="col-12 d-flex flex-column flex-md-row justify-content-between">
 
-        <button onClick={resendCode} className={"col-12 my-2 col-md-5 col-lg-4 col-xl-3 " +
-          " btn btn-outline-primary btn-lg " +
-          (button && "disabled")}>
-          resend
+        <button onClick={() => { navigate(-1) }} className="col-12 my-2 col-md-5 col-lg-4 col-xl-3  btn btn-outline-primary btn-lg ">
+          back
         </button>
 
         <button onClick={goNext} className="col-12 my-2 col-md-5 col-lg-4 col-xl-3  btn btn-outline-primary btn-lg ">
           go !
         </button>
       </div>
+
+
     </form >
   );
 };

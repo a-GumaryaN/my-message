@@ -1,13 +1,19 @@
 import useInput from "../../hooks/useInput/useInput";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import React from "react";
+import { useDispatch } from "react-redux";
+import usefetch from "../../hooks/useFetch/useFetch";
+import { setMessage } from "../../store/modal";
+import { setTemp } from "../../store/temperature";
+
 const ForgotPassword: React.FC<{}> = (props) => {
   const { state: email, dispatch: emailDispatch } = useInput();
-  const { state: code, dispatch: codeDispatch } = useInput();
-  const { state: password, dispatch: passwordDispatch } = useInput();
-  const [codeInput, showCodeInput] = useState(false);
-  const [passwordInput, showPasswordInput] = useState(false);
+
+  const dispatch = useDispatch();
+
+  const navigate = useNavigate();
+
   const checkEmail = () => {
     if (!email.value) {
       emailDispatch({ type: "setError", error: "email in empty" });
@@ -20,51 +26,44 @@ const ForgotPassword: React.FC<{}> = (props) => {
     return false;
   };
 
-  const checkCode = () => {
-    if (!codeInput) return true;
-    if (!code.value) {
-      codeDispatch({ type: "setError", error: "password in empty" });
-      return true;
-    }
-    if (code.value.length < 6) {
-      codeDispatch({
-        type: "setError",
-        error: "code most be more than 6 characters",
-      });
-      return true;
-    }
-    return false;
-  };
-
-  const checkPassword = () => {
-    if (!passwordInput) return;
-    if (!password.value) {
-      passwordDispatch({ type: "setError", error: "password in empty" });
-      return false;
-    }
-    if (password.value.length < 8) {
-      passwordDispatch({
-        type: "setError",
-        error: "password most be more than 8 characters",
-      });
-      return false;
-    }
-    return true;
-  };
-
   const submitHandler = (data: React.FormEvent) => {
     data.preventDefault();
+  };
 
+  const setCode = async () => {
     if (checkEmail()) return;
 
-    showCodeInput(true);
+    const setCodeQuery = `
+    mutation{
+      setForgotEmailCode(email:"${email.value}"){
+        error,
+        result
+      }
+    }
+    `;
 
-    if (checkCode()) return;
+    const serCodeResult = (await usefetch(setCodeQuery)).data;
 
-    showPasswordInput(true);
+    if (serCodeResult.setForgotEmailCode.error) {
+      dispatch(setMessage({
+        type: 'error',
+        title: 'error',
+        message: serCodeResult.setForgotEmailCode.error
+      }));
+      return;
+    }
 
-    if (checkPassword()) return;
-  };
+    dispatch(setMessage({
+      type: 'success',
+      title: 'message send',
+      message: 'we send a code to your email'
+    }));
+
+    dispatch(setTemp({email:email.value,nextAction:'reset-password'}));
+
+    navigate('../get-code', { replace: false });
+
+  }
 
   return (
     <form onSubmit={submitHandler} className="col-12 col-sm-8 col-md-6 col-xl-4 d-flex flex-column">
@@ -81,44 +80,26 @@ const ForgotPassword: React.FC<{}> = (props) => {
         />
         <p className="text-danger bg-gradient">{email.error}</p>
       </div>
-      <div className={"collapse " + (codeInput && " show ")}>
-        <p className="text-warning">we send a code to your email</p>
-        <p className="text-warning">send a new code after </p>
-        <label className="display-6">code</label>
-        <input
-          className="form-control"
-          type="password"
-          onChange={(e) => {
-            codeDispatch({ type: "setValue", value: e.target.value });
-          }}
-          value={code.value}
-          onBlur={checkCode}
-        />
-        <p className="text-danger bg-gradient">{code.error}</p>
+
+      <div className="col-12 d-flex flex-row justify-content-between">
+        <button onClick={() => { navigate('../login', { replace: false }) }} className="btn btn-outline-primary btn-lg align-self-end">
+          back
+        </button>
+        <button onClick={setCode} className="btn btn-outline-primary btn-lg align-self-end">
+          send code
+        </button>
+
       </div>
-      <div className={"collapse " + (passwordInput && " show ")}>
-        <p className="text-warning">enter new password</p>
-        <label className="display-6">new password</label>
-        <input
-          className="form-control"
-          type="password"
-          onChange={(e) => {
-            passwordDispatch({ type: "setValue", value: e.target.value });
-          }}
-          value={password.value}
-          onBlur={checkPassword}
-        />
-        <p className="text-danger bg-gradient">{password.error}</p>
-      </div>
-      <Link className="link link-primary" to="/register">
+
+
+      <Link className="link link-primary my-2 font-2" to="/get-email">
         not register?!
       </Link>
-      <Link className="link link-primary" to="/login">
+      <Link className="link link-primary my-2 font-2" to="/login">
         register later?!
       </Link>
-      <button className="btn btn-outline-primary btn-lg align-self-end">
-        {passwordInput ? "change password" : "send code"}
-      </button>
+
+
     </form>
   );
 };
