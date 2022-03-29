@@ -6,6 +6,7 @@ import MessageBar from "./MessageBar/MessageBar";
 import background_light from './light-back.jpeg';
 import background_dark from './dark-back.jpg';
 import { FC } from "react";
+import mask from "../../../assets/img/mask.png";
 
 const Message: FC<{}> = (props) => {
   const { name, id } = useSelector((state: any) => {
@@ -22,7 +23,7 @@ const Message: FC<{}> = (props) => {
     <div
 
       style={{
-        backgroundImage: `url(${background})`
+        backgroundImage: `url(${mask}),url(${background})`
       }}
 
       className={
