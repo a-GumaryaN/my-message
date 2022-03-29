@@ -1,13 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import selectedPerson from "./selectedPerson";
-import OffCanvas from "./OffCanvas";
 import authentication from "./authentication";
 import theme from "./theme";
 import modal from "./modal";
 import temperature from "./temperature";
+import asidePage from "./asidePage";
 
 const store = configureStore({
-  reducer: { OffCanvas, selectedPerson, authentication, theme, modal, temperature },
+  reducer: { selectedPerson, authentication, theme, modal, temperature, asidePage },
 });
 
 export default store;

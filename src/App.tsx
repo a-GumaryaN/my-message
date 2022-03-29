@@ -17,7 +17,7 @@ import ResetPassword from "./Components/ResetPassword/ResetPassword";
 
 function App() {
 
-  const { scroll, scroll_bg } = useSelector((state: any) => {
+  const { primary_bg } = useSelector((state: any) => {
     return state.theme;
   });
 
@@ -31,10 +31,8 @@ function App() {
     return state.modal;
   });
 
-
-
   return (
-    <div className={scroll + scroll_bg + "App full-height "}>
+    <div className={primary_bg + "App full-height d-flex flex-row justify-content-center "}>
       {message && < Modal />}
 
       <BrowserRouter>
@@ -87,7 +85,7 @@ function App() {
               </Overlay>
             }
           />
-          
+
           <Route
             path="/get-code-for-reset"
             element={
@@ -105,7 +103,7 @@ function App() {
               </Overlay>
             }
           />
-          
+
           <Route
             path="/reset-password"
             element={

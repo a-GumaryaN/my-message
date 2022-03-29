@@ -1,13 +1,13 @@
-.auto-show{
-	display:none;
+.auto-show {
+	display: none;
 }
 
 @media only screen and (max-width:768px) {
-	.auto-hidden{
+	.auto-hidden {
 		display: none !important;
-	}	
-	.auto-show{
+	}
+
+	.auto-show {
 		display: inline-block;
 	}
 }
-

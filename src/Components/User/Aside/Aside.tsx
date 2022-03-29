@@ -1,102 +1,31 @@
-import Card from "./Card/Card";
-import { useSelector, useDispatch } from "react-redux";
-import { setPerson } from "../../../store/selectedPerson";
-import style from "./Aside.module.css";
 import { FC } from "react";
-const persons = [
-  {
-    fullName: "friend 1",
-    id: "1",
-  },
-  {
-    fullName: "friend 2",
-    id: "2",
-  },
-  {
-    fullName: "friend 3",
-    id: "3",
-  },
-  {
-    fullName: "friend",
-    id: "4",
-  },
-  {
-    fullName: "friend",
-    id: "5",
-  },
-  {
-    fullName: "friend",
-    id: "6",
-  },
-  {
-    fullName: "friend",
-    id: "7",
-  },
-  {
-    fullName: "friend",
-    id: "8",
-  },
-  {
-    fullName: "friend",
-    id: "9",
-  },
-  {
-    fullName: "friend",
-    id: "10",
-  },
-  {
-    fullName: "friend",
-    id: "11",
-  },
-  {
-    fullName: "friend",
-    id: "12",
-  },
-  {
-    fullName: "friend",
-    id: "13",
-  },
-  {
-    fullName: "friend",
-    id: "14",
-  },
-];
+import Sidebar from "./Sidebar/Sidebar";
+import { useSelector } from "react-redux";
+import style from "./Aside.module.css";
 
 const Aside: FC<{}> = (props) => {
-  const dispatch = useDispatch();
-
-  const { fullName, id } = useSelector((state: any) => {
+  const { id } = useSelector((state: any) => {
     return state.selectedPerson;
   });
 
-  const clickHandler = ({ fullName, id }: { fullName: string; id: string }) => {
-    dispatch(setPerson({ fullName, id }));
-  };
+  const { asidePages } = useSelector((state: any) => {
+    return state.asidePage;
+  });
+
+  const last_page = asidePages[asidePages.length - 1] || null;
 
   return (
-    <div
-      className={
-        "col-12 col-md-3 full-height p-2 " +
-        " " +
-        style.container +
-        " " +
-        (id && style.hide)
-      }
-    >
-      {persons.map((item) => {
-        return (
-          <Card
-            key={item.id}
-            id={item.id}
-            clickHandler={clickHandler}
-            active={item.id === id}
-            fullName={item.fullName}
-          />
-        );
-      })}
+
+    // aside container
+    <div className={"col-12 col-md-4 col-lg-3 full-height " + style.container + ' ' + (id && style.hide)}>
+
+      {(!asidePages.length) && <Sidebar key={1} />}
+      {last_page === 'profile setting' && <div className="col-12 full-height bg-danger">
+
+      </div>}
+
     </div>
   );
-  return <div className={"col-12 col-md-3 full-height p-2 "}></div>;
 };
 
 export default Aside;

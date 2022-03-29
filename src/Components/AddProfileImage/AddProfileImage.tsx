@@ -43,25 +43,28 @@ const AddProfileImage: FC<{}> = (props) => {
 
         axios.post('http://localhost:4000/upload', formData, config);
 
-
-
         const user = JSON.parse(localStorage.getItem("my-message")!);
 
-        user.profileImage = 'http://localhost:4000/profile_image/' + user.email + "/" + image.name;
+        const profileImage = 'http://localhost:4000/profile_image/' + user.email + "/" + image.name;
+
+        user.profileImage = profileImage;
+
+        console.log(token);
 
         const updateQuery = `mutation{
-        updateUser(user:{profileImage:"${user.profileImage}"}){
-          error
-        }
-      }`
+          updateUser(user:{profileImage:"${profileImage}"}){
+            error,
+          }
+        }`
 
-        const { updateUser } = (await usefetch(updateQuery, { token: user.token })).data;
+        const { updateUser } = (await usefetch(updateQuery, token)).data;
 
         if (updateUser.error) throw updateUser.error;
 
         localStorage.setItem("my-message", JSON.stringify(user));
 
         dispatch(login(user));
+        console.log(user);
 
         navigate('../');
 

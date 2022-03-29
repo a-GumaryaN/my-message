@@ -1,14 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  border: " border-primary ",
-  text: " text-light ",
-  bg_active: " bg-active-primary ",
-  bg: " bg-dark ",
-  btn: " btn-outline-primary ",
-  text_import: " text-primary ",
-  scroll: " scroll_primary ",
-  scroll_bg: " scroll_dark ",
+  themeName:"light",
+  shadow:" shadow-light ",
+  border:' border-light ',
+  primary_text:' text-primary-light ',
+  secondary_text:' text-secondary-light ',
+  primary_bg:' bg-primary-light ',
+  secondary_bg:' bg-secondary-light ',
 };
 
 const theme = createSlice({

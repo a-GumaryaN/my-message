@@ -9,7 +9,7 @@ const Header: FC<{}> = (props) => {
     return state.selectedPerson;
   });
 
-  const { text, border,text_import } = useSelector((state: any) => {
+  const { primary_text, primary_bg } = useSelector((state: any) => {
     return state.theme;
   });
 
@@ -24,17 +24,17 @@ const Header: FC<{}> = (props) => {
     <div
       style={{ height: "10%" }}
       className={
-        border +
-        text +
+        primary_bg +
+        primary_text +
         "col-12 d-flex " +
         " flex-row align-items-center " +
         " border-3  border-bottom p-4"
       }
     >
-      <FontAwesomeIcon onClick={backClickHandler} className={text_import+"font-4 mx-2"} icon={faArrowCircleLeft} />
+      <FontAwesomeIcon onClick={backClickHandler} className={primary_text + "font-4 mx-2"} icon={faArrowCircleLeft} />
       <img className="rounded-circle" />
       <span className="font-2">{fullName}</span>
-    </div>
+    </div >
   );
 };
 

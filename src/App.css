@@ -2,28 +2,12 @@
   height: 100%;
 }
 
+*{
+  box-sizing:border-box;
+}
+
 li {
   list-style: none;
-}
-
-.text-purple {
-  color: #b357b0;
-}
-
-.bg-active-primary {
-  background-color: rgba(179, 87, 176, 0.3);
-}
-
-.bg-active-warning {
-  background-color: rgba(254, 195, 74,0.3) ;
-}
-
-.bg-active-info {
-  background-color: rgba(50, 202, 240, 0.3);
-}
-
-.bg-active-success {
-  background-color: rgba(48, 135, 84,0.3);
 }
 
 .font-1 {
@@ -62,62 +46,51 @@ li {
   font-size: 4.5rem;
 }
 
-/* width */
-::-webkit-scrollbar {
-  width: 1rem;
+.text-primary-light{
+ color: rgb(31, 60, 83);
 }
 
-/* Track */
-.scroll_light ::-webkit-scrollbar-track {
-  background: rgb(194, 194, 194);
+.text-secondary-light{
+  color: rgb(47, 90, 126);
 }
 
-.scroll_dark ::-webkit-scrollbar-track {
-  background: #212529;
+.bg-primary-light{
+  background-color: white;
 }
 
-/* Handle */
-.scroll_primary ::-webkit-scrollbar-thumb {
-  background: #b357b0;
-  border-radius: 0.3rem;
+.bg-secondary-light{
+  background-color: rgb(211, 211, 211);
 }
 
-/* Handle on hover */
-.scroll_primary ::-webkit-scrollbar-thumb:hover {
-  background: #9e4c9b;
+.border-light{
+  border: 0.2rem solid rgb(155, 155, 155);
 }
 
-/* Handle */
-.scroll_warning ::-webkit-scrollbar-thumb {
-  background: #fec34a;
-  border-radius: 0.3rem;
-}
-
-/* Handle on hover */
-.scroll_warning ::-webkit-scrollbar-thumb:hover {
-  background: #d4a23e;
+.shadow-light{
+  box-shadow: 0.2rem 0.2rem 0.5rem rgba(0,0,0,.3);
 }
 
 
-
-/* Handle */
-.scroll_info ::-webkit-scrollbar-thumb {
-  background: #32caf0;
-  border-radius: 0.3rem;
+.text-primary-dark{
+ color: rgb(199, 199, 199);
 }
 
-/* Handle on hover */
-.scroll_info ::-webkit-scrollbar-thumb:hover {
-  background: #2490ac;
+.text-secondary-dark{
+  color: rgb(153, 153, 153);
 }
 
-/* Handle */
-.scroll_success ::-webkit-scrollbar-thumb {
-  background: #308754;
-  border-radius: 0.3rem;
+.bg-primary-dark{
+  background-color: rgb(36, 36, 36);
 }
 
-/* Handle on hover */
-.scroll_success ::-webkit-scrollbar-thumb:hover {
-  background: #215d3a;
+.bg-secondary-dark{
+  background-color: rgb(56, 56, 56)
+}
+
+.border-dark{
+  border: 0.2rem solid rgb(66, 66, 66);
+}
+
+.shadow-dark{
+  box-shadow: 0 0 0.5rem rgba(42, 141, 255, 0.7);
 }

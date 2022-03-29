@@ -98,8 +98,6 @@ const GetCodeForRegister: React.FC<{}> = (props) => {
 
     dispatch(setTemp({ email, code: code.value }));
 
-    console.log(nextAction);
-
     navigate(('../' + nextAction), { replace: false });
 
   }

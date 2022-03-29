@@ -1,0 +1,7 @@
+.user-page-header-menu {
+    display: none;
+}
+
+.user-page-header:hover > .user-page-header-menu {
+    display: flex;
+}

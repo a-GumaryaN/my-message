@@ -4,7 +4,8 @@
 
 .container{
 	transition: all 0.3s ease-in-out;
-	height: 10%;
+	height: 7.5%;
+	border:10vw 0 0 10vw;
 }
 
 .circle_image{

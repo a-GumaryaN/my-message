@@ -8,89 +8,56 @@ import {
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import style from "./InputBar.module.css";
+import Emojis from "./Emojis/Emojis";
+import './EmojiStyle.css';
+import useInput from "../../../../hooks/useInput/useInput";
+
 const submitHandler = (data: FormEvent) => {
   data.preventDefault();
 };
 const InputBar: FC<{}> = () => {
-  const { border, btn, bg, text } = useSelector((state: any) => {
+  const { secondary_text, primary_text, primary_bg, secondary_bg } = useSelector((state: any) => {
     return state.theme;
   });
 
+  const { state: input, dispatch: inputDispatch } = useInput();
+
   const [buttonDisplay, setButtonDisplay] = useState(true);
+
+  const [emojiDisplay, setEmojiDisplay] = useState(false);
 
   return (
     <form
       onSubmit={submitHandler}
       style={{ height: "10%" }}
       className={
-        border +
-        bg +
-        "col-12 d-flex flex-row border-3 border-top " +
-        " p-2 align-items-center justify-content-center" +
-        " position-absolute bottom-0 star-0 "
+        primary_bg +
+        " col-12 d-flex flex-row " +
+        " p-2 align-items-center justify-content-evenly" +
+        " bottom-0 star-0 position-relative rounded "
       }
     >
-      <button
-        className={
-          btn +
-          "col-auto btn btn-outline-primary " +
-          " btn-lg mx-2 d-flex flex-column " +
-          " align-items-center"
-        }
-      >
-        send
-      </button>
-      <div className="col-6 mx-2">
-        <input className={border + " form-control text-dark p-1 "} />
+
+      <div id="emoji-button" className="col-1 full-height d-flex flex-column justify-content-evenly">
+        <FontAwesomeIcon className="font-4" icon={faFaceSmile} />
+        <Emojis />
       </div>
 
-      <div className={style["auto-show"]}>
-        {/* <div className={"d-flex flex-column position-fixed " + (buttonDisplay && " show ")}>
-          <button
-            className={
-              btn +
-              "col-auto btn btn-lg mx-2 d-flex " +
-              " flex-column align-items-center " 
-            }
-          >
-            <FontAwesomeIcon icon={faFaceSmile} />
-          </button>
-          <button
-            className={
-              btn +
-              "col-auto btn btn-lg mx-2 d-flex " +
-              " flex-column align-items-center " 
-            }
-          >
-            <FontAwesomeIcon icon={faFile} />
-          </button>
-        </div> */}
-
-        <button className={"btn btn-lg " + btn}>
-          <FontAwesomeIcon icon={faPaperclip} />
-        </button>
+      <div className="col-7  mx-2">
+        <input value={input.value} onChange={(e) => { inputDispatch({ type: 'setValue', value: e.target.value }) }} className={primary_text + " form-control text-dark p-1 "} />
       </div>
 
-      <button
+      <div
         className={
-          btn +
-          "col-auto btn btn-lg mx-2 d-flex " +
+          "col-auto mx-2 d-flex emoji " +
           " flex-column align-items-center " +
           style["auto-hidden"]
         }
       >
-        <FontAwesomeIcon icon={faFaceSmile} />
-      </button>
-      <button
-        className={
-          btn +
-          "col-auto btn btn-lg mx-2 d-flex " +
-          " flex-column align-items-center " +
-          style["auto-hidden"]
-        }
-      >
-        <FontAwesomeIcon icon={faFile} />
-      </button>
+        <FontAwesomeIcon className="emoji-button" icon={faFile} />
+      </div>
+
+
     </form>
   );
 };
