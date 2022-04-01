@@ -5,13 +5,13 @@ const initialState: {
   email: string;
   token: string;
   profileImage: null | string;
-  code:string
+  code: string
 } = {
   fullName: "",
   email: "",
   token: "sffdgbbfgnhg",
   profileImage: "",
-  code:""
+  code: ""
 };
 
 const authentication = createSlice({
@@ -22,11 +22,12 @@ const authentication = createSlice({
       return state = action.payload;
     },
     logout: (state, action) => {
+      localStorage.removeItem('my-message');
       return (state = initialState);
     },
   },
 });
 
-export const { login,logout } = authentication.actions;
+export const { login, logout } = authentication.actions;
 
 export default authentication.reducer;

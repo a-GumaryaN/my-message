@@ -34,12 +34,13 @@ const Message: FC<{}> = (props) => {
       }
     >
 
-      <Header />
 
-      <div style={{ height: "90%" }} className="col-12 col-md-10 d-flex flex-column align-items-center">
+      <Header />
+      <div style={{ height: "80%" }} className="col-12 col-md-10 d-flex flex-column align-items-center">
         <MessageBar />
-        <InputBar />
       </div>
+      <InputBar />
+
 
     </div>
   );

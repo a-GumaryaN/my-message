@@ -33,7 +33,7 @@ const User: FC<{}> = (props) => {
   const dispatch = useDispatch();
 
   return (
-    <div style={{maxWidth:"1400px"}} className={"col-12 full-height border-start border-end border-3"}>
+    <div style={{maxWidth:"1400px",boxShadow:'0 0 2.5rem rgb(47, 90, 126)'}} className={"col-12 full-height border-start border-end border-3"}>
       <Header />
       <div className="col-12 d-flex flex-row " style={{ height: "90%" }}>
         <Aside />

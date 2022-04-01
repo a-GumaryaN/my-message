@@ -5,60 +5,24 @@ import { setPerson } from "../../../../store/selectedPerson";
 
 const persons = [
     {
-        fullName: "friend 1",
-        id: "1",
+        email: "jane@gmail.com",
+        fullName: "jane doe",
+        profileImage: "http://localhost:4000/profile_image/jane@gmail.com/jane.jpeg"
     },
     {
-        fullName: "friend 2",
-        id: "2",
+        email: "emily@gmail.com",
+        fullName: "emily andrew",
+        profileImage: "http://localhost:4000/profile_image/emily@gmail.com/emily.jpeg"
     },
     {
-        fullName: "friend 3",
-        id: "3",
+        email: "jack@gmail.com",
+        fullName: "jack anderson",
+        profileImage: "http://localhost:4000/profile_image/jack@gmail.com/jack.jpeg"
     },
     {
-        fullName: "friend",
-        id: "4",
-    },
-    {
-        fullName: "friend",
-        id: "5",
-    },
-    {
-        fullName: "friend",
-        id: "6",
-    },
-    {
-        fullName: "friend",
-        id: "7",
-    },
-    {
-        fullName: "friend",
-        id: "8",
-    },
-    {
-        fullName: "friend",
-        id: "9",
-    },
-    {
-        fullName: "friend",
-        id: "10",
-    },
-    {
-        fullName: "friend",
-        id: "11",
-    },
-    {
-        fullName: "friend",
-        id: "12",
-    },
-    {
-        fullName: "friend",
-        id: "13",
-    },
-    {
-        fullName: "friend",
-        id: "14",
+        email: "sara@gmail.com",
+        fullName: "sara clark",
+        profileImage: "http://localhost:4000/profile_image/sara@gmail.com/sara.jpeg"
     },
 ];
 
@@ -71,8 +35,8 @@ const Sidebar: FC<{}> = () => {
         return state.selectedPerson;
     });
 
-    const clickHandler = ({ fullName, id }: { fullName: string; id: string }) => {
-        dispatch(setPerson({ fullName, id }));
+    const clickHandler = ({ fullName, id, profileImage }: { fullName: string; id: string, profileImage: string }) => {
+        dispatch(setPerson({ fullName, id, profileImage }));
     };
 
     const { secondary_bg } = useSelector((state: any) => {
@@ -91,11 +55,12 @@ const Sidebar: FC<{}> = () => {
         {persons.map((item) => {
             return (
                 <Card
-                    key={item.id}
-                    id={item.id}
+                    key={item.email}
+                    id={item.email}
                     clickHandler={clickHandler}
-                    active={item.id === id}
+                    active={item.email === id}
                     fullName={item.fullName}
+                    profileImage={item.profileImage}
                 />
             );
         })}

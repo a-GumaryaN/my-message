@@ -88,14 +88,14 @@ const GetCodeForReset: React.FC<{}> = (props) => {
 
     console.log(email + ' ' + code.value)
 
-    // if (checkVerifyCodeResult.checkVerifyCode.error) {
-    //   dispatch(setMessage({
-    //     title: "error",
-    //     type: "error",
-    //     message: checkVerifyCodeResult.checkVerifyCode.error
-    //   }));
-    //   return;
-    // }
+    if (checkVerifyCodeResult.checkVerifyCode.error) {
+      dispatch(setMessage({
+        title: "error",
+        type: "error",
+        message: checkVerifyCodeResult.checkVerifyCode.error
+      }));
+      return;
+    }
 
     dispatch(setTemp({ email, code: code.value }));
 

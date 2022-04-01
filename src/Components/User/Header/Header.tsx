@@ -9,26 +9,27 @@ import './Header.css';
 const Header: FC<{}> = (props) => {
   const dispatch = useDispatch();
 
-  const { text,border } = useSelector((state: any) => {
+  const { text, border } = useSelector((state: any) => {
     return state.theme;
   });
 
-  const { primary_bg,primary_text } = useSelector((state: any) => {
+  const { primary_bg, primary_text } = useSelector((state: any) => {
     return state.theme;
   });
 
   return (
     <div
+    // onMouseOver={()=>alert("pass")}
       className={
-        primary_bg+
-        primary_text+
+        primary_bg +
+        primary_text +
         "user-page-header col-12 d-flex flex-row align-items-center font-3 border-bottom border-2 position-relative " +
         style.header
       }
     >
       <img className={"ms-4 me-2 " + style.logo} src={logo} />
       my-message
-      <Services/>
+      <Services />
     </div>
   );
 };

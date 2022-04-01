@@ -1,7 +1,16 @@
 .user-page-header-menu {
-    display: none;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+    left: 0;
+    top: 90%;
+    z-index: 20;
+    border-radius: 1rem;
 }
 
-.user-page-header:hover > .user-page-header-menu {
-    display: flex;
+.user-page-header:hover>.user-page-header-menu {
+    visibility: visible;
+    top: 100%;
+    opacity: 1;
+    left: 0.5rem;
 }

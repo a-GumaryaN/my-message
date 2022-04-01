@@ -17,7 +17,7 @@ import ResetPassword from "./Components/ResetPassword/ResetPassword";
 
 function App() {
 
-  const { primary_bg } = useSelector((state: any) => {
+  const { themeType, primary_bg, secondary_bg } = useSelector((state: any) => {
     return state.theme;
   });
 
@@ -31,8 +31,10 @@ function App() {
     return state.modal;
   });
 
+  const scroll = (themeType === 'dark' ? ' dark-scroll ' : ' light-scroll ');
+
   return (
-    <div className={primary_bg + "App full-height d-flex flex-row justify-content-center "}>
+    <div className={primary_bg +scroll+ "App full-height d-flex flex-row justify-content-center "}>
       {message && < Modal />}
 
       <BrowserRouter>

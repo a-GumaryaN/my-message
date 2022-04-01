@@ -1,17 +1,8 @@
 .item {
-    /* height: 5vh; */
     border-radius: 0.5rem;
-    transition: all 0.3s ease-in-out;
-    /* background-color: white; */
 }
 
 .item:hover {
     background-color: rgb(85, 164, 255);
     color: white;
-}
-
-.container {
-    top: 100%;
-    border-radius: 1rem;
-    z-index: 20;
 }

@@ -3,7 +3,7 @@ import { FC } from "react";
 const MessageBar: FC<{}> = (props) => {
   return (
     <div style={{
-      height: "90%",
+      height: "100%",
       overflow: "auto"
     }} className="col-12 p-4">
       <MessageCard sender="me" message="message..." time="8:20" />

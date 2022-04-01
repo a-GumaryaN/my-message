@@ -2,6 +2,43 @@
 	display: none;
 }
 
+.micButton:hover > svg{
+	color:red;
+}
+
+.micButton:hover > .micMessage{
+	visibility:visible;
+	opacity: 1;
+}
+
+.micMessage{
+	visibility: hidden;
+	position:absolute;
+	bottom:100%;
+	width: 200%;
+	height: 50%;
+	opacity: 0;
+}
+
+.micCounter{
+	visibility: visible;
+	position:absolute;
+	bottom:100%;
+	width: 200%;
+	height: 100%;
+	opacity: 1;
+}
+
+.fileButton:hover > svg{
+	color:rgb(0, 153, 255);
+}
+
+
+
+.emojiButton:hover > *{
+	color:rgb(255, 251, 0);
+}
+
 @media only screen and (max-width:768px) {
 	.auto-hidden {
 		display: none !important;

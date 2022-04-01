@@ -2,8 +2,8 @@
   height: 100%;
 }
 
-*{
-  box-sizing:border-box;
+* {
+  box-sizing: border-box;
 }
 
 li {
@@ -46,51 +46,107 @@ li {
   font-size: 4.5rem;
 }
 
-.text-primary-light{
- color: rgb(31, 60, 83);
+
+
+
+.text-primary-light {
+  color: rgb(17, 33, 46);
 }
 
-.text-secondary-light{
+.text-secondary-light {
   color: rgb(47, 90, 126);
 }
 
-.bg-primary-light{
+.bg-primary-light {
   background-color: white;
 }
 
-.bg-secondary-light{
+.bg-secondary-light {
   background-color: rgb(211, 211, 211);
 }
 
-.border-light{
+.bg-active-light{
+  background-color: rgba(83, 115, 136,0.7) !important;
+}
+
+.border-light {
   border: 0.2rem solid rgb(155, 155, 155);
 }
 
-.shadow-light{
-  box-shadow: 0.2rem 0.2rem 0.5rem rgba(0,0,0,.3);
+.shadow-light {
+  box-shadow: 0.2rem 0.2rem 0.5rem rgba(0, 0, 0, .3);
 }
 
 
-.text-primary-dark{
- color: rgb(199, 199, 199);
+
+
+
+.text-primary-dark {
+  color: rgb(223, 223, 223);
 }
 
-.text-secondary-dark{
-  color: rgb(153, 153, 153);
+.text-secondary-dark {
+  color: rgb(209, 209, 209);
 }
 
-.bg-primary-dark{
+.bg-primary-dark {
   background-color: rgb(36, 36, 36);
 }
 
-.bg-secondary-dark{
+.bg-secondary-dark {
   background-color: rgb(56, 56, 56)
 }
 
-.border-dark{
+.bg-active-dark{
+  background-color: rgba(83, 115, 136,0.7) !important;
+}
+
+.border-dark {
   border: 0.2rem solid rgb(66, 66, 66);
 }
 
-.shadow-dark{
-  box-shadow: 0 0 0.5rem rgba(42, 141, 255, 0.7);
+.shadow-dark {
+  box-shadow: 0 0 0.5rem rgba(101, 173, 255, 0.7);
+}
+
+
+
+
+
+
+
+
+::-webkit-scrollbar {
+  width: 0.75rem;
+}
+
+.dark-scroll ::-webkit-scrollbar-track {
+  background-color: rgb(56, 56, 56);
+}
+
+.dark-scroll ::-webkit-scrollbar-thumb {
+  background-color: rgb(32, 32, 32);
+}
+
+.light-scroll ::-webkit-scrollbar-track {
+  background-color: rgb(211, 211, 211);
+}
+
+.light-scroll ::-webkit-scrollbar-thumb {
+  background-color: white;
+}
+
+.transition-02s {
+  transition: all 0.2s ease-in-out;
+}
+.transition-03s {
+  transition: all 0.3s ease-in-out;
+}
+
+.border-1{
+  border-radius: 1rem;
+}
+
+.list-button{
+  border:0
 }
