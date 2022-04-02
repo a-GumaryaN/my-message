@@ -8,7 +8,7 @@ import {
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import style from "./InputBar.module.css";
-import Emojis from "./Emojis/Emojis";
+import Emoji from "./Emoji/Emoji";
 import './EmojiStyle.css';
 import useInput from "../../../../hooks/useInput/useInput";
 
@@ -41,6 +41,10 @@ const InputBar: FC<{}> = () => {
     console.log(recorderState)
   }
 
+  const emojiClickHandler = (inputEmoji: any) => {
+    inputDispatch({ type: 'setValue', value: input.value + inputEmoji })
+  }
+
   return (
     <div style={{ height: "10%" }} className='col-12 d-flex flex-column align-items-center justify-content-center'>
       <form
@@ -53,12 +57,10 @@ const InputBar: FC<{}> = () => {
           " bottom-0 star-0 position-relative "
         }
       >
-
         <div className={style.emojiButton + " emoji-button height-auto full-height d-flex flex-column justify-content-evenly"}>
           <FontAwesomeIcon className={primary_text + " font-4 transition-02s"} icon={faFaceSmile} />
-          <Emojis />
+          <Emoji emojiClickHandler={emojiClickHandler} />
         </div>
-
 
         <div className="col-7  mx-2">
           <input value={input.value} onChange={(e) => { inputDispatch({ type: 'setValue', value: e.target.value }) }} className={primary_text + " form-control text-dark p-1 "} />
@@ -83,9 +85,6 @@ const InputBar: FC<{}> = () => {
           <FontAwesomeIcon className={primary_text + " font-4 transition-02s"} icon={faFile} />
 
         </div>
-
-
-
 
 
       </form>

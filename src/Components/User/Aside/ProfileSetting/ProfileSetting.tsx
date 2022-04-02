@@ -60,7 +60,11 @@ const ProfileSetting: FC<{}> = (props) => {
 
         <div style={{ height: '62%' }} className="col-12 bg-warning d-flex flex-column align-items-center justify-content-start">
 
-            <button onClick={loginOut} className={primary_bg + primary_text + "list-button col-12 py-3 border-bottom border-2"}>
+            <button onClick={loginOut} className={primary_bg + "text-danger list-button col-12 py-3 border-bottom border-3"}>
+                <FontAwesomeIcon className="mx-2" icon={faArrowAltCircleLeft} />
+                delete account
+            </button>
+            <button onClick={loginOut} className={primary_bg + "text-secondary list-button col-12 py-3 border-bottom border-3"}>
                 <FontAwesomeIcon className="mx-2" icon={faArrowAltCircleLeft} />
                 logout
             </button>
