@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../store/authentication";
 
 import React from "react";
-const CompleteInfo: React.FC<{}> = (props) => {
+const FinalRegister: React.FC<{}> = (props) => {
   const { state: fullName, dispatch: fullNameDispatch } = useInput();
   const { state: BDate, dispatch: BDateDispatch } = useInput();
   const { state: password, dispatch: passwordDispatch } = useInput();
@@ -72,21 +72,21 @@ const CompleteInfo: React.FC<{}> = (props) => {
     if (isFormValid) return;
 
     const RegisterQuery = `
-    mutation{
-      Register(email:"${email}",code:"${code}",password:"${password.value}",fullName:"${fullName.value}"){
-        error,
-        token
-      }
+      mutation{
+        FinalRegister(email:"${email}",code:"${code}",inputUser:{password:"${password.value}",fullName:"${fullName.value}"}){
+          error,
+          token
+        }
       }`;
 
-    const { Register } = (await usefetch(RegisterQuery)).data;
-    
-    if (Register.error) {
-      dispatch(setMessage({ title: 'error', type: "error", message: Register.error }));
+    const FinalRegister = (await usefetch(RegisterQuery)).data.FinalRegister;
+
+    if (FinalRegister.error) {
+      dispatch(setMessage({ title: 'error', type: "error", message: FinalRegister.error }));
       return;
     }
 
-    const token = Register.token,
+    const token = FinalRegister.token,
       user = {
         fullName: fullName.value,
         token,
@@ -108,7 +108,7 @@ const CompleteInfo: React.FC<{}> = (props) => {
   return (
     <form onSubmit={submitHandler} className="d-flex flex-column">
       <div>
-        <label className="display-6">full name</label>
+        <label className="font-3">full name</label>
         <input
           className="form-control"
           type="text"
@@ -118,10 +118,10 @@ const CompleteInfo: React.FC<{}> = (props) => {
           value={fullName.value}
           onBlur={checkFullName}
         />
-        <p className="text-danger bg-gradient">{fullName.error}</p>
+        <p className="text-danger ">{fullName.error}</p>
       </div>
       <div>
-        <label className="display-6">password</label>
+        <label className="font-3">password</label>
         <input
           className="form-control"
           type="password"
@@ -131,10 +131,10 @@ const CompleteInfo: React.FC<{}> = (props) => {
           value={password.value}
           onBlur={checkPassword}
         />
-        <p className="text-danger bg-gradient">{password.error}</p>
+        <p className="text-danger ">{password.error}</p>
       </div>
       <div>
-        <label className="display-6">password again</label>
+        <label className="font-3">password again</label>
         <input
           className="form-control"
           type="password"
@@ -147,24 +147,21 @@ const CompleteInfo: React.FC<{}> = (props) => {
           value={passwordAgain.value}
           onBlur={checkPasswordAgain}
         />
-        <p className="text-danger bg-gradient">{passwordAgain.error}</p>
+        <p className="text-danger ">{passwordAgain.error}</p>
       </div>
       <div className="col-12 d-flex flex-column flex-md-row justify-content-between">
 
-        <button onClick={() => { navigate(-1) }} className="col-12 my-2 col-md-5 col-lg-4 col-xl-3  btn btn-outline-primary btn-lg ">
+        <button onClick={() => { navigate(-1) }} className="col-12 my-2 col-md-5 col-lg-4 col-xl-3  btn-1 ">
           back
         </button>
 
-        <button onClick={register} className="col-12 my-2 col-md-5 col-lg-4 col-xl-3  btn btn-outline-primary btn-lg ">
+        <button onClick={register} className="col-12 my-2 col-md-5 col-lg-4 col-xl-3  btn-1 ">
           register
         </button>
       </div>
-      <Link className="link link-primary my-2" to="/login">
-        register later?!
-      </Link>
 
     </form>
   );
 };
 
-export default CompleteInfo;
+export default FinalRegister;

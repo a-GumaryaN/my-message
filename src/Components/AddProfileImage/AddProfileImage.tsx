@@ -54,6 +54,7 @@ const AddProfileImage: FC<{}> = (props) => {
         const updateQuery = `mutation{
           updateUser(user:{profileImage:"${profileImage}"}){
             error,
+            result
           }
         }`
 
@@ -85,25 +86,15 @@ const AddProfileImage: FC<{}> = (props) => {
 
     const file = e.target.files[0]
 
+    if (file.size > 4096000) {
+      dispatch(setMessage({
+        type: 'error',
+        message: 'file must be less than 4MB',
+        title: 'file size error:'
+      }));
 
-    // if (!(/image.*/.test(file.type))) {
-    //   dispatch(setMessage({
-    //     type: 'error',
-    //     message: 'only image file allowed',
-    //     title: 'file type error:'
-    //   }));
-    //   return;
-    // }
-
-    // if (file.size > 2048) {
-    //   dispatch(setMessage({
-    //     type: 'error',
-    //     message: 'file must be less than 2MB',
-    //     title: 'file size error:'
-    //   }));
-
-    //   return;
-    // }
+      return;
+    }
 
     setImage(file);
     setImageURL(URL.createObjectURL(file));
@@ -118,7 +109,7 @@ const AddProfileImage: FC<{}> = (props) => {
         "d-flex flex-column align-items-center justify-content-between"
       }
     >
-      <p className="display-6">add a profile image</p>
+      <p className="font-3">add a profile image</p>
 
       <input
         type="file"
@@ -138,7 +129,7 @@ const AddProfileImage: FC<{}> = (props) => {
 
       </label>
 
-      {imageURL && <p>click on your image to change it</p>}
+      {imageURL && <p className="font-2">click on your image to change it</p>}
       <p>you can ignore that</p>
 
       <button className="col-12 col-md-4 col-lg-3 btn btn-lg btn-primary">

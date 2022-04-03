@@ -169,6 +169,12 @@ li {
   transition: all 0.2s ease-in-out;
 }
 
+.disabled {
+  pointer-events: none;
+  color: rgba(192, 192, 192,0.7);
+  border: 0.1rem solid rgba(192, 192, 192,0.7);
+}
+
 .btn-1:hover{
   box-shadow: 0 0 0.75rem rgba(255, 255, 255,0.4);
   background-color: rgba(255, 255, 255,0.35);

@@ -1,18 +1,14 @@
 import React, { useEffect } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import LoginPage from "./Components/LoginPage/LoginPage";
 import GetEmail from "./Components/GetEmail/GetEmail";
-import ForgotPassword from "./Components/ForgotPassword/ForgotPassword";
 import User from "./Components/User/User";
 import "./App.css";
 import { useDispatch, useSelector } from "react-redux";
 import Overlay from "./Components/Overlay/Overlay";
 import AddProfileImage from "./Components/AddProfileImage/AddProfileImage";
 import Modal from "./Components/Modal/Modal";
-import GetCodeForRegister from "./Components/GetCodeForRegister/GetCodeForRegister";
-import GetCodeForReset from "./Components/GetCodeForReset/GetCodeForReset";
-import Register from "./Components/Register/Register";
-import ResetPassword from "./Components/ResetPassword/ResetPassword";
+import GetCode from "./Components/GetCode/GetCode";
+import FinalRegister from "./Components/FinalRegister/FinalRegister";
 
 
 function App() {
@@ -48,14 +44,6 @@ function App() {
             }
           />
           <Route
-            path="/login"
-            element={
-              <Overlay pageName="Login">
-                <LoginPage />
-              </Overlay>
-            }
-          />
-          <Route
             path="/get-email"
             element={
               <Overlay pageName="enter your email">
@@ -63,20 +51,22 @@ function App() {
               </Overlay>
             }
           />
+          
           <Route
-            path="/forgot-password"
+            path="/get-code"
             element={
-              <Overlay pageName="forgot password">
-                <ForgotPassword />
+              <Overlay pageName="enter your code">
+                <GetCode />
               </Overlay>
             }
           />
 
+
           <Route
-            path="/Register"
+            path="/final-register"
             element={
-              <Overlay pageName="complete information">
-                <Register />
+              <Overlay pageName="complete info">
+                <FinalRegister />
               </Overlay>
             }
           />

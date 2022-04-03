@@ -5,13 +5,11 @@ const initialState: {
   fullName: string;
   code: string;
   profileImage: string;
-  nextAction: string;
 } = {
   email: "",
   fullName: "",
   code: "",
   profileImage: "",
-  nextAction: "",
 };
 
 const temperature = createSlice({

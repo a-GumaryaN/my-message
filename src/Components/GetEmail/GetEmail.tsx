@@ -28,11 +28,15 @@ const Register: React.FC<{}> = (props) => {
   const submitHandler = async (target: React.FormEvent) => {
     target.preventDefault();
 
+  }
+
+  const next = async () => {
+
     if (checkEmail()) return;
 
     const GetEmailQuery = `
     mutation{
-      GetEmail(email:""){
+      GetEmail(email:"${email.value}"){
         error,
         result
       }
@@ -57,9 +61,7 @@ const Register: React.FC<{}> = (props) => {
       message: "we send a code to your email"
     }));
 
-    return;
-
-    dispatch(setTemp({ email: email.value, nextAction: "Register" }));
+    dispatch(setTemp({ email: email.value }));
 
     navigate('../get-code', { replace: false });
 
@@ -85,7 +87,7 @@ const Register: React.FC<{}> = (props) => {
           />
         </div>
 
-        <button className="col-12 col-md-3 btn-1">
+        <button onClick={next} className="col-12 col-md-3 btn-1">
           next
         </button>
 
