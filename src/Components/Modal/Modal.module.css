@@ -1,5 +1,5 @@
 .modal-back {
-	background-color: rgba(0,0,0,0.6);
+	background-color: rgba(255,255,255,0.5);
 	width: 100vw;
 	height: 100vh;
 	display: flex;
@@ -8,8 +8,40 @@
 	justify-content: center;
 	align-items: center;
 	z-index: 20;
+	backdrop-filter: blur(5px);
+	opacity:0;
+	transition: all 0.7s ease-in-out;
+	visibility: hidden;
+}
+
+.back-active{
+	visibility: visible;
+	opacity: 1;
+}
+
+.modal-header{
+	height: 15%;
+}
+
+.modal-body{
+	height: 70%;
+}
+
+.modal-footer{
+	height: 20%;
 }
 
 .card{
-	background-color: #16243b;
+	background-color: rgba(255,255,255,0.85);
+	height: 30%;
+	transition: all 0.3s ease-in-out;
+}
+
+@media only screen and (max-width:768px) {
+	.card{
+		height: 100%;
+	}
+	.modal-footer{
+		height: 10%;
+	}
 }

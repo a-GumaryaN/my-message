@@ -35,7 +35,9 @@ function App() {
 
   return (
     <div className={primary_bg +scroll+ "App full-height d-flex flex-row justify-content-center "}>
-      {message && < Modal />}
+      {/* {message && < Modal />} */}
+
+      < Modal />
 
       <BrowserRouter>
         <Routes>
@@ -56,7 +58,7 @@ function App() {
           <Route
             path="/get-email"
             element={
-              <Overlay pageName="Register">
+              <Overlay pageName="enter your email">
                 <GetEmail />
               </Overlay>
             }
@@ -80,37 +82,10 @@ function App() {
           />
 
           <Route
-            path="/get-code-for-register"
-            element={
-              <Overlay pageName="get code">
-                <GetCodeForRegister />
-              </Overlay>
-            }
-          />
-
-          <Route
-            path="/get-code-for-reset"
-            element={
-              <Overlay pageName="get code">
-                <GetCodeForReset />
-              </Overlay>
-            }
-          />
-
-          <Route
             path="/add-profile-image"
             element={
               <Overlay pageName="profile image">
                 <AddProfileImage />
-              </Overlay>
-            }
-          />
-
-          <Route
-            path="/reset-password"
-            element={
-              <Overlay pageName="new password">
-                <ResetPassword />
               </Overlay>
             }
           />

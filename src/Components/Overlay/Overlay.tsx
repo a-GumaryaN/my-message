@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { useSelector } from "react-redux";
 import style from "./Overlay.module.css";
+import overlayBg from "../../assets/img/overlay-bg.jpg";
 
 const Overlay: FC<{ pageName: string }> = ({ children, pageName }) => {
 
@@ -10,6 +11,7 @@ const Overlay: FC<{ pageName: string }> = ({ children, pageName }) => {
 
   return (
     <div
+    style={{backgroundImage:`url(${overlayBg})`}}
       className={
         primary_bg+
         "col-12 container-fluid full-height " +
@@ -17,7 +19,7 @@ const Overlay: FC<{ pageName: string }> = ({ children, pageName }) => {
         " align-items-center"
       }
     >
-      <div className="col-12 col-sm-8 col-md-6 col-xl-4 d-flex flex-column full-height">
+      <div className="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4 d-flex flex-column justify-content-center full-height">
 
         <div className={style.title+primary_text}>{pageName}</div>
 

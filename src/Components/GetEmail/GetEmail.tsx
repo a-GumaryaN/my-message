@@ -30,20 +30,23 @@ const Register: React.FC<{}> = (props) => {
 
     if (checkEmail()) return;
 
-    const RegisterQuery = `
+    const GetEmailQuery = `
     mutation{
-      setVerifyCode(email:"${email.value}"){
-        error
+      GetEmail(email:""){
+        error,
+        result
       }
     }`;
 
-    const { data } = await usefetch(RegisterQuery);
+    const GetEmail = (await usefetch(GetEmailQuery)).data.GetEmail;
 
-    if (data.setVerifyCode.error) {
+    console.log(GetEmail);
+
+    if (GetEmail.error) {
       dispatch(setMessage({
         title: "error",
         type: "error",
-        message: data.setVerifyCode.error
+        message: GetEmail.error
       }));
       return;
     }
@@ -54,33 +57,41 @@ const Register: React.FC<{}> = (props) => {
       message: "we send a code to your email"
     }));
 
+    return;
+
     dispatch(setTemp({ email: email.value, nextAction: "Register" }));
 
-    navigate('../get-code-for-register', { replace: false });
+    navigate('../get-code', { replace: false });
 
   };
 
   return (
     <form onSubmit={submitHandler} className="d-flex flex-column">
-      <div>
-        <label className="display-6">email</label>
-        <input
-          className="form-control"
-          type="email"
-          onChange={(e) => {
-            emailDispatch({ type: "setValue", value: e.target.value });
-          }}
-          value={email.value}
-          onBlur={checkEmail}
-        />
-        <p className="text-danger bg-gradient">{email.error}</p>
+
+
+      <div className="col-12 d-flex flex-column flex-md-row align-items-center justify-content-between">
+
+        <div className="col-12 col-md-8">
+
+          <input
+            className="form-control font-3"
+            type="email"
+            placeholder="email"
+            onChange={(e) => {
+              emailDispatch({ type: "setValue", value: e.target.value });
+            }}
+            value={email.value}
+            onBlur={checkEmail}
+          />
+        </div>
+
+        <button className="col-12 col-md-3 btn-1">
+          next
+        </button>
+
       </div>
-      <button className="col-12 my-2 col-md-5 col-lg-4 col-xl-3  btn btn-outline-primary btn-lg align-self-end">
-        next
-      </button>
-      <Link className="link link-primary my-2" to="/login">
-        register later?!
-      </Link>
+      <p className="text-danger">{email.error}</p>
+
 
     </form>
   );

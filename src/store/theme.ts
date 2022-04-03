@@ -1,15 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  themeName:"light",
-  themeType: 'light',
-  shadow:" shadow-light ",
-  border:' border-light ',
-  primary_text:' text-primary-light ',
-  secondary_text:' text-secondary-light ',
-  primary_bg:' bg-primary-light ',
-  secondary_bg:' bg-secondary-light ',
-  active_bg:' bg-active-light ',
+  themeName: "night",
+    themeType: 'dark',
+    border: ' border-dark ',
+    primary_text: ' text-primary-dark ',
+    secondary_text: ' text-secondary-dark ',
+    primary_bg: ' bg-primary-dark ',
+    shadow: " shadow-dark ",
+    secondary_bg: ' bg-secondary-dark ',
+    active_bg:' bg-active-dark ',
 };
 
 const theme = createSlice({

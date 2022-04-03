@@ -1,6 +1,6 @@
 import useInput from "../../hooks/useInput/useInput";
 import { login } from "../../store/authentication";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import usefetch from "../../hooks/useFetch/useFetch";
 import React from "react";
 import { setMessage } from "../../store/modal";
@@ -13,6 +13,10 @@ const LoginPage: React.FC<{}> = (props) => {
 
   const { state: email, dispatch: emailDispatch } = useInput();
   const { state: password, dispatch: passwordDispatch } = useInput();
+
+  const {primary_bg,primary_text,secondary_bg,secondary_text}=useSelector((state:any)=>{
+    return state.theme;
+  })
 
   const checkEmail = (): boolean => {
     if (!email.value) {
@@ -103,11 +107,11 @@ const LoginPage: React.FC<{}> = (props) => {
   };
 
   return (
-    <form onSubmit={submitHandler} noValidate className="col-12 d-flex flex-column">
+    <form onSubmit={submitHandler} noValidate className={primary_bg+"col-12 d-flex flex-column justify-content-center"}>
       <div>
         <label className="font-2">email</label>
         <input
-          className="form-control"
+          className="form-control brd-5"
           type="email"
           onChange={(e) => {
             emailDispatch({ type: "setValue", value: e.target.value });
@@ -115,12 +119,13 @@ const LoginPage: React.FC<{}> = (props) => {
           value={email.value}
           onBlur={checkEmail}
         />
-        <p className="text-danger bg-gradient">{email.error}</p>
+        <p className="text-danger">{email.error}</p>
       </div>
       <div>
         <label className="font-2">password</label>
         <input
-          className="form-control"
+          style={{border:'5rem'}}
+          className="form-control brd-5"
           type="password"
           onChange={(e) => {
             passwordDispatch({ type: "setValue", value: e.target.value });
@@ -128,7 +133,7 @@ const LoginPage: React.FC<{}> = (props) => {
           value={password.value}
           onBlur={checkPassword}
         />
-        <p className="text-danger bg-gradient">{password.error}</p>
+        <p className="text-danger">{password.error}</p>
       </div>
       <button className="col-12 my-2 col-md-5 col-lg-4 col-xl-3  btn btn-outline-primary btn-lg align-self-end">
         login
@@ -140,7 +145,7 @@ const LoginPage: React.FC<{}> = (props) => {
         not register?!
       </Link>
 
-      
+
     </form>
   );
 };

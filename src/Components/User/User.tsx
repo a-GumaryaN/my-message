@@ -26,7 +26,7 @@ const User: FC<{}> = (props) => {
       console.log(user)
       dispatch(login(user));
     } else {
-      navigate('/login', { replace: true });
+      navigate('/get-email', { replace: true });
     }
   }, []);
 
