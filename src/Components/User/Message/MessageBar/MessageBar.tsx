@@ -7,7 +7,7 @@ const MessageBar: FC<{}> = (props) => {
       overflow: "auto"
     }} className="col-12 p-4">
       <MessageCard sender="me" message="message..." time="8:20" />
-      <MessageCard sender="my friend" message="message..." time="8:20" />
+      <MessageCard sender="my friend" message="dvgdhfmjmb dvdbfnmhj,kj,dvgdhfmjmb dvdbfnmhj,kj,dvgdhfmjmb dvdbfnmhj,kj,dvgdhfmjmb dvdbfnmhj,kj,dvgdhfmjmb dvdbfnmhj,kj,dvgdhfmjmb dvdbfnmhj,kj," time="8:20" />
       <MessageCard sender="my friend" message="message..." time="8:20" />
       <MessageCard sender="my friend" message="message..." time="8:20" />
       <MessageCard sender="my friend" message="message..." time="8:20" />

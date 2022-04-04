@@ -10,6 +10,9 @@ import Modal from "./Components/Modal/Modal";
 import GetCode from "./Components/GetCode/GetCode";
 import FinalRegister from "./Components/FinalRegister/FinalRegister";
 
+import app_bg_light from "./assets/img/overlay-bg-light.jpg";
+import app_bg_dark from "./assets/img/overlay-bg-dark.jpg";
+
 
 function App() {
 
@@ -19,18 +22,16 @@ function App() {
 
   const dispatch = useDispatch();
 
-  const { token } = useSelector((state: any) => {
-    return state.theme;
-  });
-
-  const { message } = useSelector((state: any) => {
-    return state.modal;
-  });
+  // const { message } = useSelector((state: any) => {
+  //   return state.modal;
+  // });
 
   const scroll = (themeType === 'dark' ? ' dark-scroll ' : ' light-scroll ');
 
+  const app_bg = (themeType === "dark" ? app_bg_dark : app_bg_light)
+
   return (
-    <div className={primary_bg +scroll+ "App full-height d-flex flex-row justify-content-center "}>
+    <div style={{ backgroundImage: `url(${app_bg})` }} className={scroll + "App full-height d-flex flex-row justify-content-center "}>
       {/* {message && < Modal />} */}
 
       < Modal />
@@ -51,7 +52,7 @@ function App() {
               </Overlay>
             }
           />
-          
+
           <Route
             path="/get-code"
             element={

@@ -65,8 +65,8 @@ li {
   background-color: rgb(211, 211, 211);
 }
 
-.bg-active-light{
-  background-color: rgba(83, 115, 136,0.7) !important;
+.bg-active-light {
+  background-color: rgba(83, 115, 136, 0.7) !important;
 }
 
 .border-light {
@@ -97,8 +97,8 @@ li {
   background-color: rgb(56, 56, 56)
 }
 
-.bg-active-dark{
-  background-color: rgba(83, 115, 136,0.7) !important;
+.bg-active-dark {
+  background-color: rgba(83, 115, 136, 0.7) !important;
 }
 
 .border-dark {
@@ -139,30 +139,55 @@ li {
 .transition-02s {
   transition: all 0.2s ease-in-out;
 }
+
 .transition-03s {
   transition: all 0.3s ease-in-out;
 }
 
-.list-button{
-  border:0
+.list-button {
+  border: 0
 }
 
 
-.border-1{
+.border-1 {
   border-radius: 1rem;
 }
-.border-2{
+
+.border-2 {
   border-radius: 2rem;
 }
-.brd-5{
+
+.brd-5 {
   border-radius: 5rem;
 }
 
-.btn-1{
+.btn-1 {
+  border-radius: 1rem;
   font-size: 1.2rem;
   border: 0.1rem solid white;
-  border-radius: 1rem;
-  background-color: rgba(255, 255, 255,0.3);
+  background-color: rgba(255, 255, 255, 0.3);
+  padding: 1rem;
+  color: white;
+  backdrop-filter: blur(5px);
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-1-right {
+  border-radius: 1rem 5rem 5rem 1rem;
+  font-size: 1.2rem;
+  border: 0.1rem solid white;
+  background-color: rgba(255, 255, 255, 0.3);
+  padding: 1rem;
+  color: white;
+  backdrop-filter: blur(5px);
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-1-left {
+  border-radius:  5rem 1rem 1rem 5rem ;
+  font-size: 1.2rem;
+  border: 0.1rem solid white;
+  background-color: rgba(255, 255, 255, 0.3);
   padding: 1rem;
   color: white;
   backdrop-filter: blur(5px);
@@ -171,11 +196,32 @@ li {
 
 .disabled {
   pointer-events: none;
-  color: rgba(192, 192, 192,0.7);
-  border: 0.1rem solid rgba(192, 192, 192,0.7);
+  color: rgba(192, 192, 192, 0.7);
+  border: 0.1rem solid rgba(192, 192, 192, 0.7);
 }
 
-.btn-1:hover{
-  box-shadow: 0 0 0.75rem rgba(255, 255, 255,0.4);
-  background-color: rgba(255, 255, 255,0.35);
+
+
+
+.btn-1:hover {
+  box-shadow: 0 0 0.75rem rgba(255, 255, 255, 0.4);
+  background-color: rgba(255, 255, 255, 0.35);
+}
+
+
+.input-form {
+  background-color: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(5px);
+  color: white;
+  padding: 0.5rem 1rem;
+  border: 0.1rem solid white;
+  border-radius: 3rem;
+}
+
+.input-form:focus {
+  border: 0.1rem solid rgb(189, 189, 189);
+}
+
+.input-form::placeholder {
+  color: white;
 }

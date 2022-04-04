@@ -87,7 +87,7 @@ const Register: React.FC<{}> = (props) => {
           />
         </div>
 
-        <button onClick={next} className="col-12 col-md-3 btn-1">
+        <button onClick={next} className="col-12 col-md-3 btn-1-right ">
           next
         </button>
 

@@ -22,9 +22,7 @@ const Message: FC<{}> = (props) => {
   return (
     <div
 
-      style={{
-        backgroundImage: `url(${mask}),url(${background})`
-      }}
+      
 
       className={
         style.container +

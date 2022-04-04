@@ -45,7 +45,7 @@ const Services: FC<{}> = () => {
     }
 
 
-    return <div className={style.container + (themeType === "dark" ? secondary_bg : primary_bg) + " col-5 col-md-3 user-page-header-menu height-auto position-absolute overflow-auto d-flex flex-column align-items-center justify-content-center p-2"}>
+    return <div className={style.container + (themeType === "dark" ? secondary_bg : primary_bg) + " col-8 col-sm-5 col-md-3 user-page-header-menu height-auto position-absolute overflow-auto d-flex flex-column align-items-center justify-content-center p-2"}>
 
 
         <div onClick={() => { dispatch(setAsidePage('profile setting')) }} className={style.item + primary_bg + shadow + " col-11 p-2  d-flex flex-row align-items-center justify-content-start font-2 my-1"}>

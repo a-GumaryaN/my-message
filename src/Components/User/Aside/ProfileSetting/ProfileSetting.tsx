@@ -28,8 +28,14 @@ const ProfileSetting: FC<{}> = (props) => {
         return state.theme;
     });
 
-    const loginOut=()=>{
+    const deleteAccount=()=>{
         dispatch(setAsidePage('getting code'))
+    }
+    
+    const loginOut=()=>{
+        localStorage.removeItem('my-message');
+        dispatch(logout({}));
+        navigate('../get-email',{replace:true});
     }
 
 
@@ -60,7 +66,7 @@ const ProfileSetting: FC<{}> = (props) => {
 
         <div style={{ height: '62%' }} className="col-12 bg-warning d-flex flex-column align-items-center justify-content-start">
 
-            <button onClick={loginOut} className={primary_bg + "text-danger list-button col-12 py-3 border-bottom border-3"}>
+            <button onClick={deleteAccount} className={primary_bg + "text-danger list-button col-12 py-3 border-bottom border-3"}>
                 <FontAwesomeIcon className="mx-2" icon={faArrowAltCircleLeft} />
                 delete account
             </button>

@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { useSelector } from "react-redux";
+import style from "./MessageCard.module.css";
 
 const MessageCard: FC<{ sender: string; message: string; time: string }> = (
   props
@@ -11,10 +12,12 @@ const MessageCard: FC<{ sender: string; message: string; time: string }> = (
     return state.theme;
   });
 
+  const cardTheme=(props.sender === 'me' ? style.me : style.other)
+
   return (
     <div className={"col-12 d-flex flex-row " + from}>
-      <div className={primary_text + primary_bg + " p-2 rounded my-2 "}>
-        <p className="text-info">{props.sender}</p>
+      <div className={primary_text + " my-2 "+cardTheme}>
+        <p>{props.sender}</p>
         <p>{props.message}</p>
         <p className={secondary_text}>{props.time}</p>
       </div>

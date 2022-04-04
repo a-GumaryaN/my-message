@@ -44,7 +44,7 @@ const GetCodeForReset: React.FC<{}> = (props) => {
 
     const ReSendEmailQuery = `
     mutation{
-      GetEmail(email:""){
+      GetEmail(email:"${email}"){
         error,
         result
       }
@@ -83,7 +83,8 @@ const GetCodeForReset: React.FC<{}> = (props) => {
         userLogin{
           token,
           user{
-            fullName
+            fullName,
+            profileImage
           }
         }
       }
@@ -103,10 +104,14 @@ const GetCodeForReset: React.FC<{}> = (props) => {
 
     if (CheckCodeResult.userExist) {
 
+      console.log("data => ");
+      console.log(CheckCodeResult);
+
       const token = CheckCodeResult.userLogin.token,
+      profileImage = CheckCodeResult.userLogin.user.profileImage,
         fullName = CheckCodeResult.userLogin.user.fullName;
 
-      const user = { email, token, fullName }
+      const user = { email, token, fullName,profileImage }
 
       localStorage.setItem('my-message', JSON.stringify(user));
 
@@ -173,11 +178,11 @@ const GetCodeForReset: React.FC<{}> = (props) => {
 
       <div className="col-12 d-flex flex-column flex-md-row justify-content-between">
 
-        <button onClick={() => { navigate(-1) }} className="col-12 my-2 col-md-5 col-lg-4 col-xl-3 btn-1">
+        <button onClick={() => { navigate(-1) }} className="col-12 my-2 col-md-5 col-lg-4 col-xl-3 btn-1-left">
           back
         </button>
 
-        <button onClick={goNext} className="col-12 my-2 col-md-5 col-lg-4 col-xl-3  btn-1 ">
+        <button onClick={goNext} className="col-12 my-2 col-md-5 col-lg-4 col-xl-3  btn-1-right ">
           go !
         </button>
       </div>
