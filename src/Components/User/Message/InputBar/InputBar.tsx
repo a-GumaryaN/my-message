@@ -6,7 +6,7 @@ import {
   faMicrophone,
 } from "@fortawesome/free-solid-svg-icons";
 import { useSelector } from "react-redux";
-import { useState } from "react";
+import { useState,useMemo } from "react";
 import style from "./InputBar.module.css";
 import Emoji from "./Emoji/Emoji";
 import './EmojiStyle.css';
@@ -15,6 +15,7 @@ import useInput from "../../../../hooks/useInput/useInput";
 const submitHandler = (data: FormEvent) => {
   data.preventDefault();
 };
+
 const InputBar: FC<{}> = () => {
   const { secondary_text, primary_text, primary_bg, secondary_bg } = useSelector((state: any) => {
     return state.theme;

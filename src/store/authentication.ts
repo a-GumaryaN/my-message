@@ -22,7 +22,6 @@ const authentication = createSlice({
       return state = action.payload;
     },
     logout: (state, action) => {
-      localStorage.removeItem('my-message');
       return (state = initialState);
     },
   },

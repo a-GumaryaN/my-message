@@ -1,6 +1,7 @@
-import { FC } from "react";
+import { FC, useCallback } from "react";
 import { useSelector } from "react-redux";
 import emojis from "./Emojis";
+
 
 const Emojis: FC<{ emojiClickHandler: any }> = ({emojiClickHandler}) => {
 
@@ -12,12 +13,12 @@ const Emojis: FC<{ emojiClickHandler: any }> = ({emojiClickHandler}) => {
 
         <ul style={{ height: '15%' }} className="col-auto border-bottom border-3 d-flex flex-row align-items-center justify-content-around ">
             {
-            
+
             emojis.map((item => {
                 return <button key={item.title} style={{ backgroundColor: 'inherit', border: 0 }} className="">
                     {item.title}
                 </button>
-                
+
             }))}
         </ul>
 
@@ -33,11 +34,7 @@ const Emojis: FC<{ emojiClickHandler: any }> = ({emojiClickHandler}) => {
                 })
             }
 
-
         </div>
-
-
-
 
     </div>
 }

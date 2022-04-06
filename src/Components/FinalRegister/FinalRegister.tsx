@@ -9,8 +9,6 @@ import React from "react";
 const FinalRegister: React.FC<{}> = (props) => {
   const { state: fullName, dispatch: fullNameDispatch } = useInput();
   const { state: BDate, dispatch: BDateDispatch } = useInput();
-  const { state: password, dispatch: passwordDispatch } = useInput();
-  const { state: passwordAgain, dispatch: passwordAgainDispatch } = useInput();
 
   const { email, code } = useSelector((state: any) => {
     return state.temperature;
@@ -29,51 +27,16 @@ const FinalRegister: React.FC<{}> = (props) => {
     return false;
   };
 
-  const checkPassword = () => {
-    if (!password.value) {
-      passwordDispatch({ type: "setError", error: "password is empty" });
-      return true;
-    }
-    if (password.value.length < 2) {
-      passwordDispatch({
-        type: "setError",
-        error: "password most be more than 6 characters",
-      });
-      return true;
-    }
-    return false;
-  };
 
-  const checkPasswordAgain = () => {
-    if (!passwordAgain.value) {
-      passwordAgainDispatch({
-        type: "setError",
-        error: "password again is empty",
-      });
-      return true;
-    }
-    if (passwordAgain.value !== password.value) {
-      passwordAgainDispatch({
-        type: "setError",
-        error: "password again not match with password",
-      });
-      return true;
-    }
-    return false;
-  };
 
   const register = async () => {
-    let isFormValid = true;
 
-    isFormValid = isFormValid && checkFullName();
-    isFormValid = isFormValid && checkPassword();
-    isFormValid = isFormValid && checkPasswordAgain();
 
-    if (isFormValid) return;
+    if (checkFullName()) return;
 
     const RegisterQuery = `
       mutation{
-        FinalRegister(email:"${email}",code:"${code}",inputUser:{password:"${password.value}",fullName:"${fullName.value}"}){
+        FinalRegister(email:"${email}",code:"${code}",fullName:"${fullName.value}"){
           error,
           token
         }
@@ -119,35 +82,6 @@ const FinalRegister: React.FC<{}> = (props) => {
           onBlur={checkFullName}
         />
         <p className="text-danger ">{fullName.error}</p>
-      </div>
-      <div>
-        <label className="font-3">password</label>
-        <input
-          className="form-control"
-          type="password"
-          onChange={(e) => {
-            passwordDispatch({ type: "setValue", value: e.target.value });
-          }}
-          value={password.value}
-          onBlur={checkPassword}
-        />
-        <p className="text-danger ">{password.error}</p>
-      </div>
-      <div>
-        <label className="font-3">password again</label>
-        <input
-          className="form-control"
-          type="password"
-          onChange={(e) => {
-            passwordAgainDispatch({
-              type: "setValue",
-              value: e.target.value,
-            });
-          }}
-          value={passwordAgain.value}
-          onBlur={checkPasswordAgain}
-        />
-        <p className="text-danger ">{passwordAgain.error}</p>
       </div>
       <div className="col-12 d-flex flex-column flex-md-row justify-content-between">
 

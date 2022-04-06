@@ -1,5 +1,5 @@
 import { useReducer } from "react";
-const useInput = () => {
+const useInput = (initialValue?: string) => {
   const reducer = (state: any, action: any): any => {
     switch (action.type) {
       case "setError":
@@ -18,7 +18,7 @@ const useInput = () => {
   };
 
   const initialState = {
-    value: "",
+    value: (initialValue ? initialValue : ""),
     error: "",
   };
 

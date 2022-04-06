@@ -6,6 +6,10 @@
   box-sizing: border-box;
 }
 
+button{
+  border:0
+}
+
 li {
   list-style: none;
 }
@@ -49,6 +53,8 @@ li {
 
 
 
+
+
 .text-primary-light {
   color: rgb(17, 33, 46);
 }
@@ -58,7 +64,7 @@ li {
 }
 
 .bg-primary-light {
-  background-color: white;
+  background-color: rgb(255, 255, 255);
 }
 
 .bg-secondary-light {
@@ -200,7 +206,15 @@ li {
   border: 0.1rem solid rgba(192, 192, 192, 0.7);
 }
 
+.btn-1-right:hover{
+  box-shadow: 0 0 0.75rem rgba(255, 255, 255, 0.4);
+  background-color: rgba(255, 255, 255, 0.35);
+}
 
+.btn-1-left:hover{
+  box-shadow: 0 0 0.75rem rgba(255, 255, 255, 0.4);
+  background-color: rgba(255, 255, 255, 0.35);
+}
 
 
 .btn-1:hover {

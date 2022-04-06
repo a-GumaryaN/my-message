@@ -34,7 +34,7 @@ const Modal = () => {
     const modal = (
         <div className={style["modal-back"] + ' ' + (message && style['back-active'])}>
            
-            <div className={"col-12 col-md-6 p-3 rounded-2 d-flex flex-column " + style.card}>
+            <div className={"col-12 col-md-6 2 d-flex flex-column " + style.card}>
               
                 <div className={style['modal-header'] + " align-self-start font-4 " + textColor}>
                     {title}

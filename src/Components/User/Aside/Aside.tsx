@@ -3,9 +3,8 @@ import Sidebar from "./Sidebar/Sidebar";
 import { useSelector } from "react-redux";
 import style from "./Aside.module.css";
 import ProfileSetting from "./ProfileSetting/ProfileSetting";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import GetCode from "./GetCode/GetCode";
+import GetCode from "./ProfileSetting/GetCode/GetCode";
+import EditProfile from "./ProfileSetting/EditProfile/EditProfile";
 
 const Aside: FC<{}> = (props) => {
   const { id } = useSelector((state: any) => {
@@ -36,7 +35,11 @@ const Aside: FC<{}> = (props) => {
 
       {last_page === 'profile setting' && <ProfileSetting />}
 
+      {last_page === 'edit profile' && <EditProfile />}
+
       {last_page === 'getting code' && <GetCode />}
+
+      
 
 
     </div>

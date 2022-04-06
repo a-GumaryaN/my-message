@@ -17,7 +17,7 @@ const ProfileSetting: FC<{}> = (props) => {
 
     const dispatch = useDispatch();
 
-    const navigate=useNavigate();
+    const navigate = useNavigate();
 
 
     const { profileImage, fullName } = useSelector((state: any) => {
@@ -28,14 +28,14 @@ const ProfileSetting: FC<{}> = (props) => {
         return state.theme;
     });
 
-    const deleteAccount=()=>{
+    const deleteAccount = () => {
         dispatch(setAsidePage('getting code'))
     }
-    
-    const loginOut=()=>{
+
+    const loginOut = () => {
         localStorage.removeItem('my-message');
         dispatch(logout({}));
-        navigate('../get-email',{replace:true});
+        navigate('../get-email', { replace: true });
     }
 
 
@@ -55,9 +55,9 @@ const ProfileSetting: FC<{}> = (props) => {
 
             <div style={{ right: '1%', top: '2%' }} className={style.editButton}>
                 <FontAwesomeIcon className=" p-3 text-info bg-light text-info rounded-circle " icon={faEdit} />
-                <div className={primary_bg + primary_text + " col-auto position-absolute p-2 border-1  transition-02s " + style.editList}>
+                <button onClick={() => { dispatch(setAsidePage('edit profile')) }} style={{ border: 0 }} className={primary_bg + primary_text + " col-auto position-absolute p-2 border-1  transition-02s " + style.editList}>
                     edit profile
-                </div>
+                </button>
             </div>
 
 
