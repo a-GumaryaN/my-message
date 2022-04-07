@@ -2,13 +2,15 @@ import { FC, useState } from "react";
 import style from "./AddProfileImage.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faPlus,faArrowCircleRight } from "@fortawesome/free-solid-svg-icons";
 import { FormEvent } from "react";
 import { setMessage } from "../../store/modal";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { login } from "../../store/authentication";
 import usefetch from "../../hooks/useFetch/useFetch";
+import styled from "styled-components";
+
 
 
 const AddProfileImage: FC<{}> = (props) => {
@@ -101,6 +103,18 @@ const AddProfileImage: FC<{}> = (props) => {
 
   }
 
+  const Label = styled.label`
+  width: 15rem;
+  height: 15rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  & *{
+    font-size: 7rem;
+  }
+  `;
+
   return (
     <form
       onSubmit={submitHandler}
@@ -120,20 +134,20 @@ const AddProfileImage: FC<{}> = (props) => {
         style={{ display: "none" }}
       />
 
-      <label
+      <Label
         htmlFor="profileImage"
-        className={"col-5 border border-2 " + style.button}
+        className={"col-5 border border-2 btn-1 " + style.button}
       >
 
         {imageURL ? <img className="col-11" src={imageURL} /> : <FontAwesomeIcon icon={faPlus} />}
 
-      </label>
+      </Label>
 
       {imageURL && <p className="font-2">click on your image to change it</p>}
       <p>you can ignore that</p>
 
-      <button className="col-12 col-md-4 col-lg-3 btn btn-lg btn-primary">
-        add
+      <button className="col-12 col-md-6 btn-1">
+        add <FontAwesomeIcon icon={faArrowCircleRight}/>
       </button>
     </form>
   );

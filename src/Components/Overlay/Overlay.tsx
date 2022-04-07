@@ -1,6 +1,5 @@
 import { FC } from "react";
 import { useSelector } from "react-redux";
-import style from "./Overlay.module.css";
 import styled from "styled-components";
 
 
@@ -33,11 +32,11 @@ const Overlay: FC<{ pageName: string }> = ({ children, pageName }) => {
         " align-items-center"
       }
     >
-      <div className="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4 d-flex flex-column justify-content-center full-height">
+      <div className="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4 d-flex flex-column align-items-center justify-content-center full-height">
 
-        <Title className={primary_text + "d-flex flex-row justify-content-start"}>{pageName}</Title>
+        <Title className={primary_text + "d-flex flex-row justify-content-start "}>{pageName}</Title>
 
-        <div className={style.content}>
+        <div>
           {children}
         </div>
 
