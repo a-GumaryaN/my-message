@@ -2,7 +2,7 @@ import useInput from "../../hooks/useInput/useInput";
 import { useNavigate, Link } from 'react-router-dom'
 import usefetch from "../../hooks/useFetch/useFetch";
 import { setMessage } from "../../store/modal";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import React from "react";
 import { setTemp } from "../../store/temperature";
@@ -76,7 +76,7 @@ const Register: React.FC<{}> = (props) => {
         <div className="col-12 col-md-8">
 
           <input
-            className="form-control font-3"
+            className=" input-1 text-light font-3"
             type="email"
             placeholder="email"
             onChange={(e) => {

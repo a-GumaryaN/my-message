@@ -5,6 +5,7 @@ import { setMessage } from "../../store/modal";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../store/authentication";
 
+
 import React from "react";
 const FinalRegister: React.FC<{}> = (props) => {
   const { state: fullName, dispatch: fullNameDispatch } = useInput();
@@ -67,6 +68,7 @@ const FinalRegister: React.FC<{}> = (props) => {
   const submitHandler = async (target: React.FormEvent) => {
     target.preventDefault();
   };
+
 
   return (
     <form onSubmit={submitHandler} className="d-flex flex-column">

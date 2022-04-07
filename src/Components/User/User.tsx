@@ -7,11 +7,15 @@ import { useDispatch } from "react-redux";
 import usefetch from "../../hooks/useFetch/useFetch";
 import { login } from "../../store/authentication";
 import { useNavigate } from "react-router-dom";
+import load from "../../assets/img/load.gif";
+import Loading from "../Loading/Loading";
 
 const User: FC<{}> = (props) => {
   const { email } = useSelector((state: any) => {
     return state.authentication;
   });
+
+  const [socket, setSocket] = useState(null);
 
   const navigate = useNavigate();
 
@@ -21,6 +25,7 @@ const User: FC<{}> = (props) => {
   // }, [email]);
 
   useEffect(() => {
+
     if (localStorage.getItem('my-message')) {
       const user = JSON.parse(localStorage.getItem('my-message')!);
       console.log(user)
@@ -28,17 +33,31 @@ const User: FC<{}> = (props) => {
     } else {
       navigate('/get-email', { replace: true });
     }
+
+
+
+
+
   }, []);
 
   const dispatch = useDispatch();
 
   return (
     <div style={{ maxWidth: "1400px", boxShadow: '0 0 3rem rgb(47, 90, 126)' }} className={"col-12 full-height border-start border-end border-3"}>
-      <Header />
-      <div className="col-12 d-flex flex-row " style={{ height: "90%" }}>
-        <Aside />
-        <Message />
-      </div>
+      {(socket
+        ?
+        <div className="col-12 full-height">
+          <Header />
+          <div className="col-12 d-flex flex-row " style={{ height: "90%" }}>
+            <Aside />
+            <Message />
+          </div>
+        </div>
+        :
+        <div className="col-12 full-height d-flex flex-column align-items-center justify-content-center text-light">
+         <Loading/>
+        </div>
+      )}
     </div>
   );
 };

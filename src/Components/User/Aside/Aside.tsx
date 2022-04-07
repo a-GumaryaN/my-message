@@ -3,7 +3,7 @@ import Sidebar from "./Sidebar/Sidebar";
 import { useSelector } from "react-redux";
 import style from "./Aside.module.css";
 import ProfileSetting from "./ProfileSetting/ProfileSetting";
-import GetCode from "./ProfileSetting/GetCode/GetCode";
+import GetCode from "./ProfileSetting/DeleteAccount/DeleteAccount";
 import EditProfile from "./ProfileSetting/EditProfile/EditProfile";
 
 const Aside: FC<{}> = (props) => {

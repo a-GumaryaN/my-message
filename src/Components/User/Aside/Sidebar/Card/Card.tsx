@@ -8,12 +8,12 @@ const Card: FC<{
   fullName: string;
   id: string;
   profileImage: string;
-}> = ({ active, profileImage, fullName, id,clickHandler }) => {
+}> = ({ active, profileImage, fullName, id, clickHandler }) => {
   const cardClickHandler = () => {
     clickHandler({ fullName, id, profileImage });
   };
 
-  const { secondary_text, primary_bg,active_bg } = useSelector((state: any) => {
+  const { secondary_text, primary_bg, active_bg } = useSelector((state: any) => {
     return state.theme;
   });
 
@@ -32,7 +32,18 @@ const Card: FC<{
         style.container
       }
     >
-      {(profileImage && <img className={style.circle_image + " ms-2 me-4"} src={profileImage} />)}
+      {/* {(profileImage && <img className={style.circle_image + " ms-2 me-4"} src={profileImage} />)} */}
+
+
+      {/* {(profileImage && )} */}
+
+      <div className={style['image-container'] + " position-relative"}>
+        <img className={style.circle_image} src={profileImage} />
+        <div className={style.dot}></div>
+      </div>
+
+
+
       {fullName}
     </div>
   );

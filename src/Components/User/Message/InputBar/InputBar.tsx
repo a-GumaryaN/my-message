@@ -60,7 +60,7 @@ const InputBar: FC<{}> = () => {
       >
         <div className={style.emojiButton + " emoji-button height-auto full-height d-flex flex-column justify-content-evenly"}>
           <FontAwesomeIcon className={primary_text + " font-4 transition-02s"} icon={faFaceSmile} />
-          <Emoji emojiClickHandler={emojiClickHandler} />
+          {/* <Emoji emojiClickHandler={emojiClickHandler} /> */}
         </div>
 
         <div className="col-7  mx-2">

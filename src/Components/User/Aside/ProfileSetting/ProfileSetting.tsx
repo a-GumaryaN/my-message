@@ -9,6 +9,8 @@ import { logout } from "../../../../store/authentication";
 import { setAsidePage } from "../../../../store/asidePageSlice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import usefetch from "../../../../hooks/useFetch/useFetch";
+import { setMessage } from "../../../../store/modal";
 
 const ProfileSetting: FC<{}> = (props) => {
     const { id } = useSelector((state: any) => {
@@ -19,6 +21,10 @@ const ProfileSetting: FC<{}> = (props) => {
 
     const navigate = useNavigate();
 
+    const { email } = useSelector((state: any) => {
+        return state.authentication;
+    });
+
 
     const { profileImage, fullName } = useSelector((state: any) => {
         return state.authentication;
@@ -28,8 +34,26 @@ const ProfileSetting: FC<{}> = (props) => {
         return state.theme;
     });
 
-    const deleteAccount = () => {
-        dispatch(setAsidePage('getting code'))
+    const deleteAccount = async () => {
+        const GetEmailQuery = `
+        mutation{
+            GetEmail(email:"${email}"){
+              error
+            }
+          }`;
+
+        const GetEmail = (await usefetch(GetEmailQuery)).data.GetEmail;
+
+        if (GetEmail.error) {
+            dispatch(setMessage({
+                title: "error",
+                type: "error",
+                message: GetEmail.error
+            }));
+            return;
+        }
+
+        dispatch(setAsidePage('getting code'));
     }
 
     const loginOut = () => {

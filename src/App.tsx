@@ -9,6 +9,7 @@ import AddProfileImage from "./Components/AddProfileImage/AddProfileImage";
 import Modal from "./Components/Modal/Modal";
 import GetCode from "./Components/GetCode/GetCode";
 import FinalRegister from "./Components/FinalRegister/FinalRegister";
+import WelcomePage from "./Components/WelcomePage/WelcomePage";
 
 import app_bg_light from "./assets/img/overlay-bg-light.jpg";
 import app_bg_dark from "./assets/img/overlay-bg-dark.jpg";
@@ -44,12 +45,20 @@ function App() {
               <User />
             }
           />
+
           <Route
             path="/get-email"
             element={
               <Overlay pageName="enter your email">
                 <GetEmail />
               </Overlay>
+            }
+          />
+
+          <Route
+            path="/welcome-page"
+            element={
+              <WelcomePage />
             }
           />
 

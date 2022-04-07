@@ -129,10 +129,6 @@ const GetCodeForReset: React.FC<{}> = (props) => {
 
     }
 
-
-
-
-
   }
 
   useEffect(() => {
