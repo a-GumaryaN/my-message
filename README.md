@@ -1,9 +1,7 @@
 my-message messenger client side:
-in this project we use react , redux (with redux toolkit) , socket.io (for realtime connection) and bootstrap-5 for biulding client side
+in this project we use react (with typescript) , redux (with redux toolkit as state management system) , socket.io (for realtime connection) , styled-components and bootstrap-5 for biulding a complete responsive progressive web application messenger for client side
 
-my-message login page in dark theme:
-
-![Screenshot from 2022-04-09 06-24-27](https://user-images.githubusercontent.com/76553715/162552154-d840cb00-9d5c-4c35-aea3-ac9ca5ad5ca9.png)
+this project also has near complete server side.
 
 my-message user page in dark theme and pc device size :
 
